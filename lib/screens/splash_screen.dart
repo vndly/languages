@@ -11,6 +11,8 @@ class SplashScreen extends StatefulWidget {
 }
 
 class _SplashScreenState extends State<SplashScreen> {
+  final GlobalKey<ScaffoldState> _scaffoldKey = GlobalKey<ScaffoldState>();
+
   @override
   void initState() {
     super.initState();
@@ -18,20 +20,29 @@ class _SplashScreenState extends State<SplashScreen> {
   }
 
   Future _init() async {
-    final result = await GetCategories()();
+    try {
+      final result = await GetCategories()();
 
-    if (result.success) {
-      Navigator.of(context).pushReplacement(HomeScren.instance(result.data));
-    } else {
-      // error
+      if (result.success) {
+        Navigator.of(context).pushReplacement(HomeScren.instance(result.data));
+      } else {
+        _showError();
+      }
+    } catch (e) {
+      _showError();
     }
   }
 
+  void _showError() => _scaffoldKey.currentState.showSnackBar(const SnackBar(
+        content: Text('Error downloading data'),
+      ));
+
   @override
   Widget build(BuildContext context) {
-    return const LightStatusBar(
+    return LightStatusBar(
       child: Scaffold(
-        body: SafeArea(
+        key: _scaffoldKey,
+        body: const SafeArea(
           child: Center(
             child: CircularProgressIndicator(),
           ),

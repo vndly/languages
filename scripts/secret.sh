@@ -1,3 +1,0 @@
-#!/usr/bin/env bash
-
-FIREBASE_TOKEN="1//09-WaqeEC0A8PCgYIARAAGAkSNwF-L9IrGdDSe64vwaI_tS4Unv-PsIdggkE4Mx9M6eF_TAAXvyLMfOOYOz0FfDuGWiQ566vwh0c"

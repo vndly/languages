@@ -31,6 +31,7 @@
 .pub/
 /build/
 /android/gradle.properties
+/scripts/secret.sh
 
 # Web related
 lib/generated_plugin_registrant.dart
