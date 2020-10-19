@@ -37,25 +37,23 @@ class _HomeScrenState extends State<HomeScren> {
 
   @override
   Widget build(BuildContext context) {
-    return LightStatusBar(
-      child: Scaffold(
-        bottomNavigationBar: BottomNavigationBar(
-          items: const [
-            BottomNavigationBarItem(
-              icon: Icon(Icons.record_voice_over_sharp),
-              label: 'Vocabulary',
-            ),
-            BottomNavigationBarItem(
-              icon: Icon(Icons.list_alt),
-              label: 'Catalogue',
-            ),
-          ],
-          currentIndex: _selectedIndex,
-          onTap: _onPageChanged,
-        ),
-        body: SafeArea(
-          child: _page(_selectedIndex),
-        ),
+    return Scaffold(
+      bottomNavigationBar: BottomNavigationBar(
+        items: const [
+          BottomNavigationBarItem(
+            icon: Icon(Icons.record_voice_over_sharp),
+            label: 'Vocabulary',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.list_alt),
+            label: 'Catalogue',
+          ),
+        ],
+        currentIndex: _selectedIndex,
+        onTap: _onPageChanged,
+      ),
+      body: SafeArea(
+        child: _page(_selectedIndex),
       ),
     );
   }

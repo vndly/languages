@@ -12,6 +12,10 @@ class JsonEntry {
     this.fr = '',
   });
 
+  bool matches(String text) =>
+      es.toLowerCase().contains(text.toLowerCase()) ||
+      fr.toLowerCase().contains(text.toLowerCase());
+
   factory JsonEntry.fromJson(Map<String, dynamic> json) =>
       _$JsonEntryFromJson(json);
 
