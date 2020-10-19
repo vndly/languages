@@ -24,8 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
     try {
       await Firebase.initializeApp();
       final vocabulary = await Vocabulary.load();
-      await Vocabulary.syncData();
       Navigator.of(context).pushReplacement(HomeScren.instance(vocabulary));
+      Vocabulary.syncData();
     } catch (e) {
       print(e);
       _showError();

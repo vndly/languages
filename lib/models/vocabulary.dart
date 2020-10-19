@@ -13,8 +13,33 @@ class Vocabulary {
   JsonCategory category(int index) => categories[index];
 
   static Future<Vocabulary> load() async {
-    return const Vocabulary([]);
+    final List<JsonCategory> result = [];
+
+    try {
+      final querySnapshot =
+          await FirebaseFirestore.instance.collection('categories').get();
+
+      for (final doc in querySnapshot.docs) {
+        final List<JsonEntry> entries = [];
+        final data = doc.data();
+
+        for (final MapEntry<String, dynamic> entry in data.entries) {
+          entries.add(JsonEntry(es: entry.key, fr: entry.value.toString()));
+        }
+
+        result.add(JsonCategory(name: doc.id, values: entries));
+      }
+    } catch (e) {
+      print(e);
+    }
+
+    final vocabulary = Vocabulary(result);
+    vocabulary.check();
+
+    return vocabulary;
   }
+
+  void check() {}
 
   static Future syncData() async {
     try {
@@ -44,42 +69,6 @@ class Vocabulary {
             await document.update(data);
           } else {
             await document.set(data);
-          }
-        }
-      }
-    } catch (e) {
-      print(e);
-    }
-  }
-
-  static Future syncData2() async {
-    try {
-      final result = await GetCategories()();
-
-      if (result.success) {
-        for (final JsonCategory category in result.data) {
-          final collectionReference = FirebaseFirestore.instance
-              .collection('categories')
-              .doc(category.name)
-              .collection('values');
-
-          for (final JsonEntry entry in category.values) {
-            final docReference = collectionReference.doc(entry.es);
-            final document = await docReference.get();
-
-            if (document.exists) {
-              final data = document.data();
-
-              if (data['fr'] != entry.fr) {
-                docReference.update({
-                  'fr': entry.fr,
-                });
-              }
-            } else {
-              collectionReference.doc(entry.es).set({
-                'fr': entry.fr,
-              });
-            }
           }
         }
       }
