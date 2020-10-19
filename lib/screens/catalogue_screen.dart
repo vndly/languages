@@ -15,6 +15,7 @@ class CatalogueScreen extends StatefulWidget {
 
 class _CatalogueScreenState extends State<CatalogueScreen> {
   List<JsonEntry> result;
+  final searchController = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -26,12 +27,20 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
             minLines: 1,
             maxLines: 1,
             textAlignVertical: TextAlignVertical.center,
-            decoration: const InputDecoration(
+            controller: searchController,
+            decoration: InputDecoration(
               filled: true,
-              fillColor: Color(0xffeeeeee),
-              prefixIcon: Icon(
+              fillColor: Colors.grey[200],
+              prefixIcon: const Icon(
                 Icons.search,
                 color: Colors.blueGrey,
+              ),
+              suffixIcon: IconButton(
+                icon: const Icon(
+                  Icons.clear,
+                  color: Colors.blueGrey,
+                ),
+                onPressed: _clear,
               ),
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
@@ -39,7 +48,7 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
               hintText: 'Search',
-              hintStyle: TextStyle(color: Colors.grey),
+              hintStyle: const TextStyle(color: Colors.grey),
             ),
             onChanged: _search,
           ),
@@ -83,5 +92,12 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
         result = entries;
       });
     }
+  }
+
+  void _clear() {
+    setState(() {
+      searchController.text = '';
+      _search('');
+    });
   }
 }
