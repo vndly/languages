@@ -1,0 +1,27 @@
+name: Languages
+description: A Flutter app to learn languages
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.9.0 <3.0.0"
+
+dependencies:
+  json_annotation: ^3.1.0
+  flutter_tts: ^1.2.7
+  dafluta: ^2.6.0
+  dahttp: ^3.2.0
+
+  flutter:
+    sdk: flutter
+
+dev_dependencies:
+  json_serializable: ^3.5.0
+  build_runner: ^1.10.3
+  dapackages: ^1.3.0
+  daassets: ^1.1.1
+
+  flutter_test:
+    sdk: flutter
+
+flutter:
+  uses-material-design: true

@@ -1,0 +1,17 @@
+{
+    "workbench.colorTheme": "Default Dark+",
+    "editor.minimap.enabled": false,
+    "editor.tabSize": 4,
+    "editor.fontSize": 17,
+    "editor.detectIndentation": false,
+    "editor.formatOnSave": true,
+    "typescript.updateImportsOnFileMove.enabled": "always",
+    "typescript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "typescript.format.placeOpenBraceOnNewLineForFunctions": true,
+    "javascript.format.placeOpenBraceOnNewLineForControlBlocks": true,
+    "javascript.format.placeOpenBraceOnNewLineForFunctions": true,
+    "editor.fontFamily": "'Source Code Pro', 'Droid Sans Mono', 'monospace', monospace, 'Droid Sans Fallback'",
+    "files.autoSave": "afterDelay",
+    "workbench.editor.enablePreview": false,
+    "dart.previewFlutterUiGuides": true
+}
