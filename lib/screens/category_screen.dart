@@ -1,6 +1,6 @@
 import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_entry.dart';
-import 'package:Languages/player.dart';
+import 'package:Languages/player/player.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 

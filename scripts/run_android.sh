@@ -2,8 +2,4 @@
 
 set -e
 
-FLAVOR="dev"
-#FLAVOR="prod"
-
-#flutter run -t lib/main/main_${FLAVOR}.dart --flavor ${FLAVOR}
-flutter run -t lib/main.dart
+flutter run -t lib/main/main.dart
