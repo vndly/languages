@@ -1,16 +1,16 @@
-import 'package:Languages/json/json_category.dart';
+import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/screens/catalogue_screen.dart';
 import 'package:Languages/screens/vocabulary_screen.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 
 class HomeScren extends StatefulWidget {
-  final List<JsonCategory> categories;
+  final Vocabulary vocabulary;
 
-  const HomeScren(this.categories);
+  const HomeScren(this.vocabulary);
 
-  static PageRouteBuilder<HomeScren> instance(List<JsonCategory> categories) =>
-      FadeRoute<HomeScren>(HomeScren(categories));
+  static PageRouteBuilder<HomeScren> instance(Vocabulary vocabulary) =>
+      FadeRoute<HomeScren>(HomeScren(vocabulary));
 
   @override
   _HomeScrenState createState() => _HomeScrenState();
@@ -29,7 +29,7 @@ class _HomeScrenState extends State<HomeScren> {
     if (position == 0) {
       return const VocabularyScreen();
     } else if (position == 1) {
-      return CatalogueScreen(widget.categories);
+      return CatalogueScreen(widget.vocabulary);
     } else {
       throw Exception();
     }

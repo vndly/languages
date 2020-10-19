@@ -1,13 +1,14 @@
 import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_entry.dart';
+import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/widgets/category_row.dart';
 import 'package:Languages/widgets/entry_row.dart';
 import 'package:flutter/material.dart';
 
 class CatalogueScreen extends StatefulWidget {
-  final List<JsonCategory> categories;
+  final Vocabulary vocabulary;
 
-  const CatalogueScreen(this.categories);
+  const CatalogueScreen(this.vocabulary);
 
   @override
   _CatalogueScreenState createState() => _CatalogueScreenState();
@@ -57,8 +58,8 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, position) =>
-                  CategoryRow(widget.categories[position]),
-              itemCount: widget.categories.length,
+                  CategoryRow(widget.vocabulary.category(position)),
+              itemCount: widget.vocabulary.length,
             ),
           )
         else
@@ -80,7 +81,7 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
     } else {
       final List<JsonEntry> entries = [];
 
-      for (final JsonCategory category in widget.categories) {
+      for (final JsonCategory category in widget.vocabulary.categories) {
         for (final JsonEntry entry in category.values) {
           if (entry.matches(text)) {
             entries.add(entry);
