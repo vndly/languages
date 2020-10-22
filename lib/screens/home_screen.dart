@@ -27,7 +27,7 @@ class _HomeScrenState extends State<HomeScren> {
 
   Widget _page(int position) {
     if (position == 0) {
-      return const VocabularyScreen();
+      return VocabularyScreen(widget.vocabulary);
     } else if (position == 1) {
       return CatalogueScreen(widget.vocabulary);
     } else {

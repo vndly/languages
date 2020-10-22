@@ -1,3 +1,5 @@
+import 'dart:math';
+
 import 'package:Languages/api/categories/get_categories.dart';
 import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_entry.dart';
@@ -11,6 +13,20 @@ class Vocabulary {
   int get length => categories.length;
 
   JsonCategory category(int index) => categories[index];
+
+  Expression get expression {
+    final JsonCategory category =
+        categories[Random().nextInt(categories.length)];
+
+    final JsonEntry entry =
+        category.values[Random().nextInt(category.values.length)];
+
+    return Expression(
+      category: category.name,
+      spanish: entry.es,
+      french: entry.fr,
+    );
+  }
 
   static Future<Vocabulary> load() async {
     final List<JsonCategory> result = [];
@@ -76,4 +92,16 @@ class Vocabulary {
       print(e);
     }
   }
+}
+
+class Expression {
+  final String category;
+  final String spanish;
+  final String french;
+
+  const Expression({
+    this.category,
+    this.spanish,
+    this.french,
+  });
 }

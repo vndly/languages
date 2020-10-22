@@ -4,7 +4,10 @@ class Player {
   static final FlutterTts tts = FlutterTts();
   static PlayerState state = PlayerState.PLAYING_1;
 
-  static Future play(
+  static const String SPANISH = 'es-ES';
+  static const String FRENCH = 'fr-FR';
+
+  static Future play2(
     String language1,
     String text1,
     String language2,
@@ -29,9 +32,17 @@ class Player {
     await _speak(language1, text1);
   }
 
+  static Future play(
+    String language,
+    String text,
+  ) =>
+      _speak(language, text);
+
   static Future _speak(String language, String text) async {
-    await tts.setLanguage(language);
-    await tts.speak(text);
+    if (text.isNotEmpty) {
+      await tts.setLanguage(language);
+      await tts.speak(text);
+    }
   }
 }
 
