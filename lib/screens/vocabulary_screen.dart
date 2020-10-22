@@ -38,11 +38,10 @@ class Empty extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Center(
-      child: RaisedButton(
+      child: OptionButton(
+        icon: Icons.play_arrow_outlined,
         color: Colors.blue,
-        textColor: Colors.white,
         onPressed: _onStart,
-        child: const Text('Start'),
       ),
     );
   }

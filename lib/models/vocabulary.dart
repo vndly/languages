@@ -3,6 +3,7 @@ import 'dart:math';
 import 'package:Languages/api/categories/get_categories.dart';
 import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_entry.dart';
+import 'package:Languages/player/player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Vocabulary {
@@ -46,12 +47,42 @@ class Vocabulary {
     }
 
     final vocabulary = Vocabulary(categories, expressions);
-    vocabulary.check();
+    vocabulary._check();
 
     return vocabulary;
   }
 
-  void check() {}
+  void _check() {
+    for (final Expression expression in expressions) {
+      final occurrencesSpanish =
+          _occurrences(Player.SPANISH, expression.spanish);
+      final occurrencesFrench = _occurrences(Player.FRENCH, expression.french);
+
+      if (occurrencesSpanish > 1) {
+        print('${expression.category} ${expression.spanish}');
+      }
+
+      if (occurrencesFrench > 1) {
+        print('${expression.category} ${expression.french}');
+      }
+    }
+  }
+
+  int _occurrences(String language, String word) {
+    int result = 0;
+
+    if (word.isNotEmpty) {
+      for (final Expression expression in expressions) {
+        if ((language == Player.SPANISH) && (expression.spanish == word)) {
+          result++;
+        } else if ((language == Player.FRENCH) && (expression.french == word)) {
+          result++;
+        }
+      }
+    }
+
+    return result;
+  }
 
   static Future syncData() async {
     try {
@@ -63,26 +94,16 @@ class Vocabulary {
 
         for (final JsonCategory category in result.data) {
           final document = collectionReference.doc(category.name);
-          final documentSnapshot = await document.get();
           final data = <String, String>{};
-
-          if (documentSnapshot.exists) {
-            final map = documentSnapshot
-                .data()
-                .map((key, value) => MapEntry(key, value.toString()));
-            data.addAll(map);
-          }
 
           for (final JsonEntry entry in category.values) {
             data[entry.es.replaceAll('/', '-')] = entry.fr;
           }
 
-          if (documentSnapshot.exists) {
-            await document.update(data);
-          } else {
-            await document.set(data);
-          }
+          await document.set(data);
         }
+
+        print('Sync completed!');
       }
     } catch (e) {
       print(e);
