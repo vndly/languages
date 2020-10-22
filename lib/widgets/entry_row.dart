@@ -21,5 +21,5 @@ class EntryRow extends StatelessWidget {
   }
 
   void _onSelected() =>
-      Player.play2('es-ES', entry.es, 'fr-FR', entry.fr, () {});
+      Player.playMultiple('es-ES', entry.es, 'fr-FR', entry.fr, () {});
 }

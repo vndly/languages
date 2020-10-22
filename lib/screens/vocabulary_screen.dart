@@ -1,6 +1,5 @@
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/player/player.dart';
-import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 
 class VocabularyScreen extends StatefulWidget {
@@ -26,7 +25,7 @@ class _VocabularyScreenState extends State<VocabularyScreen> {
 
   void _nextExpression() {
     setState(() {
-      expression = widget.vocabulary.expression;
+      expression = widget.vocabulary.randomExpression;
     });
   }
 }
@@ -67,13 +66,13 @@ class _ContentState extends State<Content> {
   @override
   void initState() {
     super.initState();
-    Player.play(Player.SPANISH, widget.expression.spanish);
+    Player.playSingle(Player.SPANISH, widget.expression.spanish);
   }
 
   @override
   void didUpdateWidget(covariant Content oldWidget) {
     super.didUpdateWidget(oldWidget);
-    Player.play(Player.SPANISH, widget.expression.spanish);
+    Player.playSingle(Player.SPANISH, widget.expression.spanish);
   }
 
   @override
@@ -82,7 +81,7 @@ class _ContentState extends State<Content> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ExpressionText(widget.expression.spanish),
+          ExpressionText(Player.SPANISH, widget.expression.spanish),
           const SizedBox(height: 20),
           if (hide)
             Column(
@@ -97,7 +96,7 @@ class _ContentState extends State<Content> {
               ],
             )
           else
-            ExpressionText(widget.expression.french),
+            ExpressionText(Player.FRENCH, widget.expression.french),
           const SizedBox(height: 50),
           if (!hide)
             Row(
@@ -128,7 +127,7 @@ class _ContentState extends State<Content> {
   }
 
   void _onReveal() {
-    Player.play(Player.FRENCH, widget.expression.french);
+    Player.playSingle(Player.FRENCH, widget.expression.french);
     setState(() {
       hide = false;
     });
@@ -188,15 +187,21 @@ class OptionButton extends StatelessWidget {
 }
 
 class ExpressionText extends StatelessWidget {
+  final String language;
   final String text;
 
-  const ExpressionText(this.text);
+  const ExpressionText(this.language, this.text);
 
   @override
   Widget build(BuildContext context) {
-    return Text(
-      text,
-      style: TextStyle(fontSize: 40, color: Colors.grey[800]),
+    return InkWell(
+      onTap: _onPlay,
+      child: Text(
+        text,
+        style: TextStyle(fontSize: 40, color: Colors.grey[800]),
+      ),
     );
   }
+
+  void _onPlay() => Player.playSingle(language, text);
 }

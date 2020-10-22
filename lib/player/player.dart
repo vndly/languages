@@ -7,7 +7,7 @@ class Player {
   static const String SPANISH = 'es-ES';
   static const String FRENCH = 'fr-FR';
 
-  static Future play2(
+  static Future playMultiple(
     String language1,
     String text1,
     String language2,
@@ -18,7 +18,6 @@ class Player {
       switch (state) {
         case PlayerState.PLAYING_1:
           state = PlayerState.PLAYING_2;
-          //await Future.delayed(const Duration(seconds: 1));
           _speak(language2, text2);
           break;
 
@@ -32,7 +31,7 @@ class Player {
     await _speak(language1, text1);
   }
 
-  static Future play(
+  static Future playSingle(
     String language,
     String text,
   ) =>

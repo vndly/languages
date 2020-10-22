@@ -7,29 +7,20 @@ import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Vocabulary {
   final List<JsonCategory> categories;
+  final List<Expression> expressions;
 
-  const Vocabulary(this.categories);
+  const Vocabulary(this.categories, this.expressions);
 
   int get length => categories.length;
 
   JsonCategory category(int index) => categories[index];
 
-  Expression get expression {
-    final JsonCategory category =
-        categories[Random().nextInt(categories.length)];
-
-    final JsonEntry entry =
-        category.values[Random().nextInt(category.values.length)];
-
-    return Expression(
-      category: category.name,
-      spanish: entry.es,
-      french: entry.fr,
-    );
-  }
+  Expression get randomExpression =>
+      expressions[Random().nextInt(expressions.length)];
 
   static Future<Vocabulary> load() async {
-    final List<JsonCategory> result = [];
+    final List<JsonCategory> categories = [];
+    final List<Expression> expressions = [];
 
     try {
       final querySnapshot =
@@ -41,15 +32,20 @@ class Vocabulary {
 
         for (final MapEntry<String, dynamic> entry in data.entries) {
           entries.add(JsonEntry(es: entry.key, fr: entry.value.toString()));
+          expressions.add(Expression(
+            category: doc.id,
+            spanish: entry.key,
+            french: entry.value.toString(),
+          ));
         }
 
-        result.add(JsonCategory(name: doc.id, values: entries));
+        categories.add(JsonCategory(name: doc.id, values: entries));
       }
     } catch (e) {
       print(e);
     }
 
-    final vocabulary = Vocabulary(result);
+    final vocabulary = Vocabulary(categories, expressions);
     vocabulary.check();
 
     return vocabulary;
