@@ -49,6 +49,7 @@ class _HomeScrenState extends State<HomeScren> {
             label: 'Catalogue',
           ),
         ],
+        backgroundColor: Colors.white,
         currentIndex: _selectedIndex,
         onTap: _onPageChanged,
       ),

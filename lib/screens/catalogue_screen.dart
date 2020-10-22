@@ -99,6 +99,7 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
     setState(() {
       searchController.text = '';
       _search('');
+      FocusScope.of(context).unfocus();
     });
   }
 }

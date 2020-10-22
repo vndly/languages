@@ -4,6 +4,8 @@ set -e
 
 DIR=`dirname $0`
 
+${DIR}/incrementer.sh
+
 . ${DIR}/secret.sh
 export FIREBASE_TOKEN=${FIREBASE_TOKEN}
 

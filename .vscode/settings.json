@@ -2,7 +2,7 @@
     "workbench.colorTheme": "Default Dark+",
     "editor.minimap.enabled": false,
     "editor.tabSize": 4,
-    "editor.fontSize": 17,
+    "editor.fontSize": 16,
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "typescript.updateImportsOnFileMove.enabled": "always",
