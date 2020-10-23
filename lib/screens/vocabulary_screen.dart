@@ -87,12 +87,13 @@ class _ContentState extends State<Content> {
             Column(
               mainAxisSize: MainAxisSize.min,
               children: [
+                const SizedBox(height: 20),
                 OptionButton(
-                  icon: Icons.help_outline,
+                  text: '?',
                   color: Colors.blue,
                   onPressed: _onReveal,
                 ),
-                const SizedBox(height: 48),
+                const SizedBox(height: 21),
               ],
             )
           else
@@ -148,11 +149,13 @@ class _ContentState extends State<Content> {
 
 class OptionButton extends StatelessWidget {
   final IconData icon;
+  final String text;
   final Color color;
   final Function onPressed;
 
   const OptionButton({
     this.icon,
+    this.text,
     this.color,
     this.onPressed,
   });
@@ -160,15 +163,26 @@ class OptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      height: 80,
+      height: 85,
       child: RaisedButton(
         color: color,
         onPressed: onPressed,
-        child: Icon(
-          icon,
-          size: 40,
-          color: Colors.white,
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(500),
         ),
+        child: (icon != null)
+            ? Icon(
+                icon,
+                size: 40,
+                color: Colors.white,
+              )
+            : Text(
+                text,
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontSize: 40,
+                ),
+              ),
       ),
     );
   }
@@ -190,7 +204,7 @@ class ExpressionText extends StatelessWidget {
           text,
           textAlign: TextAlign.center,
           style: TextStyle(
-            fontSize: 40,
+            fontSize: 35,
             color: Colors.grey[800],
           ),
         ),
