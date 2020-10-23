@@ -1,15 +1,16 @@
 import 'dart:math';
-
 import 'package:Languages/api/categories/get_categories.dart';
 import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_entry.dart';
 import 'package:Languages/models/known_words.dart';
-import 'package:Languages/models/player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Vocabulary {
   final List<JsonCategory> categories;
   final List<Expression> expressions;
+
+  static const String ORIGIN_LANGUAGE = 'es-ES';
+  static const String TARGET_LANGUAGE = 'fr-FR';
 
   const Vocabulary(this.categories, this.expressions);
 
@@ -71,8 +72,9 @@ class Vocabulary {
   void _check() {
     for (final Expression expression in expressions) {
       final occurrencesOrigin =
-          _occurrences(Player.ORIGIN_LANGUAGE, expression.origin);
-      final occurrencesTarget = _occurrences(Player.TARGET_LANGUAGE, expression.target);
+          _occurrences(Vocabulary.ORIGIN_LANGUAGE, expression.origin);
+      final occurrencesTarget =
+          _occurrences(Vocabulary.TARGET_LANGUAGE, expression.target);
 
       if (occurrencesOrigin > 1) {
         print('${expression.category} ${expression.origin}');
@@ -89,9 +91,11 @@ class Vocabulary {
 
     if (word.isNotEmpty) {
       for (final Expression expression in expressions) {
-        if ((language == Player.ORIGIN_LANGUAGE) && (expression.origin == word)) {
+        if ((language == Vocabulary.ORIGIN_LANGUAGE) &&
+            (expression.origin == word)) {
           result++;
-        } else if ((language == Player.TARGET_LANGUAGE) && (expression.target == word)) {
+        } else if ((language == Vocabulary.TARGET_LANGUAGE) &&
+            (expression.target == word)) {
           result++;
         }
       }

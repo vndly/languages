@@ -2,28 +2,23 @@ import 'package:flutter_tts/flutter_tts.dart';
 
 class Player {
   static final FlutterTts tts = FlutterTts();
-  static PlayerState state = PlayerState.PLAYING_1;
-
-  static const String ORIGIN_LANGUAGE = 'es-ES';
-  static const String TARGET_LANGUAGE = 'fr-FR';
+  static PlayerState state = PlayerState.PLAYING_ORIGIN;
 
   static Future playMultiple(
     String language1,
     String text1,
     String language2,
     String text2,
-    Function onComplete,
   ) async {
     tts.setCompletionHandler(() async {
       switch (state) {
-        case PlayerState.PLAYING_1:
-          state = PlayerState.PLAYING_2;
+        case PlayerState.PLAYING_ORIGIN:
+          state = PlayerState.PLAYING_TARGET;
           _speak(language2, text2);
           break;
 
-        case PlayerState.PLAYING_2:
-          state = PlayerState.PLAYING_1;
-          onComplete();
+        case PlayerState.PLAYING_TARGET:
+          state = PlayerState.PLAYING_ORIGIN;
           break;
       }
     });
@@ -31,10 +26,7 @@ class Player {
     await _speak(language1, text1);
   }
 
-  static Future playSingle(
-    String language,
-    String text,
-  ) =>
+  static Future playSingle(String language, String text) =>
       _speak(language, text);
 
   static Future _speak(String language, String text) async {
@@ -46,6 +38,6 @@ class Player {
 }
 
 enum PlayerState {
-  PLAYING_1,
-  PLAYING_2,
+  PLAYING_ORIGIN,
+  PLAYING_TARGET,
 }
