@@ -1,19 +1,22 @@
 // GENERATED CODE - DO NOT MODIFY BY HAND
 
-part of 'json_entry.dart';
+part of 'json_expression.dart';
 
 // **************************************************************************
 // JsonSerializableGenerator
 // **************************************************************************
 
-JsonEntry _$JsonEntryFromJson(Map<String, dynamic> json) {
-  return JsonEntry(
+JsonExpression _$JsonExpressionFromJson(Map<String, dynamic> json) {
+  return JsonExpression(
+    category: json['category'] as String,
     origin: json['origin'] as String,
     target: json['target'] as String,
   );
 }
 
-Map<String, dynamic> _$JsonEntryToJson(JsonEntry instance) => <String, dynamic>{
+Map<String, dynamic> _$JsonExpressionToJson(JsonExpression instance) =>
+    <String, dynamic>{
+      'category': instance.category,
       'origin': instance.origin,
       'target': instance.target,
     };

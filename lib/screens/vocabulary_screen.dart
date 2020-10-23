@@ -1,4 +1,5 @@
-import 'package:Languages/models/known_words.dart';
+import 'package:Languages/json/json_expression.dart';
+import 'package:Languages/storage/known_words_storage.dart';
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/models/player.dart';
 import 'package:flutter/material.dart';
@@ -13,7 +14,7 @@ class VocabularyScreen extends StatefulWidget {
 }
 
 class _VocabularyScreenState extends State<VocabularyScreen> {
-  Expression expression;
+  JsonExpression expression;
 
   @override
   Widget build(BuildContext context) {
@@ -51,7 +52,7 @@ class Empty extends StatelessWidget {
 }
 
 class Content extends StatefulWidget {
-  final Expression expression;
+  final JsonExpression expression;
   final Function nextExpression;
 
   const Content(this.expression, this.nextExpression);
@@ -138,7 +139,7 @@ class _ContentState extends State<Content> {
   }
 
   Future _onCorrect() async {
-    await KnownWords.add(widget.expression.origin);
+    await KnownWordsStorage.add(widget.expression.origin);
 
     setState(() {
       hide = true;

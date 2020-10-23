@@ -1,8 +1,7 @@
-import 'package:Languages/models/known_words.dart';
+import 'package:Languages/storage/known_words_storage.dart';
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/screens/home_screen.dart';
 import 'package:dafluta/dafluta.dart';
-import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -23,11 +22,9 @@ class _SplashScreenState extends State<SplashScreen> {
 
   Future _init() async {
     try {
-      await Firebase.initializeApp();
-      await KnownWords.init();
+      await KnownWordsStorage.init();
       final Vocabulary vocabulary = await Vocabulary.load();
       Navigator.of(context).pushReplacement(HomeScren.instance(vocabulary));
-      Vocabulary.syncData();
     } catch (e) {
       _showError(e);
     }

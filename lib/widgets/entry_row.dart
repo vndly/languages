@@ -1,5 +1,6 @@
 import 'package:Languages/json/json_entry.dart';
 import 'package:Languages/models/player.dart';
+import 'package:Languages/models/vocabulary.dart';
 import 'package:flutter/material.dart';
 
 class EntryRow extends StatelessWidget {
@@ -12,14 +13,18 @@ class EntryRow extends StatelessWidget {
     return ListTile(
       title: Row(
         children: [
-          Expanded(child: Text(entry.es)),
-          Expanded(child: Text(entry.fr)),
+          Expanded(child: Text(entry.origin)),
+          Expanded(child: Text(entry.target)),
         ],
       ),
       onTap: _onSelected,
     );
   }
 
-  void _onSelected() =>
-      Player.playMultiple('es-ES', entry.es, 'fr-FR', entry.fr);
+  void _onSelected() => Player.playMultiple(
+        Vocabulary.ORIGIN_LANGUAGE,
+        entry.origin,
+        Vocabulary.TARGET_LANGUAGE,
+        entry.target,
+      );
 }

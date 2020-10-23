@@ -48,8 +48,11 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
               enabledBorder: InputBorder.none,
               errorBorder: InputBorder.none,
               disabledBorder: InputBorder.none,
-              hintText: 'Search',
-              hintStyle: const TextStyle(color: Colors.grey),
+              hintText: 'Search in ${widget.vocabulary.size} words…',
+              hintStyle: const TextStyle(
+                color: Colors.grey,
+                fontSize: 14,
+              ),
             ),
             onChanged: _search,
           ),

@@ -4,17 +4,17 @@ part 'json_entry.g.dart';
 
 @JsonSerializable()
 class JsonEntry {
-  final String es;
-  final String fr;
+  final String origin;
+  final String target;
 
   const JsonEntry({
-    this.es = '',
-    this.fr = '',
+    this.origin = '',
+    this.target = '',
   });
 
   bool matches(String text) =>
-      es.toLowerCase().contains(text.toLowerCase()) ||
-      fr.toLowerCase().contains(text.toLowerCase());
+      origin.toLowerCase().contains(text.toLowerCase()) ||
+      target.toLowerCase().contains(text.toLowerCase());
 
   factory JsonEntry.fromJson(Map<String, dynamic> json) =>
       _$JsonEntryFromJson(json);

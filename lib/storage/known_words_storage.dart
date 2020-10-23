@@ -1,7 +1,7 @@
 import 'dart:convert';
 import 'package:shared_preferences/shared_preferences.dart';
 
-class KnownWords {
+class KnownWordsStorage {
   static const String KNOWN_WORDS = 'known.words';
   static final List<String> knownWords = [];
 
