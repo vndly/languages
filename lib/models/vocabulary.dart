@@ -3,7 +3,8 @@ import 'dart:math';
 import 'package:Languages/api/categories/get_categories.dart';
 import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_entry.dart';
-import 'package:Languages/player/player.dart';
+import 'package:Languages/models/known_words.dart';
+import 'package:Languages/models/player.dart';
 import 'package:cloud_firestore/cloud_firestore.dart';
 
 class Vocabulary {
@@ -16,7 +17,17 @@ class Vocabulary {
 
   JsonCategory category(int index) => categories[index];
 
-  Expression get randomExpression =>
+  Expression get randomExpression {
+    Expression expression = _randomExpression();
+
+    while (KnownWords.contains(expression.spanish)) {
+      expression = _randomExpression();
+    }
+
+    return expression;
+  }
+
+  Expression _randomExpression() =>
       expressions[Random().nextInt(expressions.length)];
 
   static Future<Vocabulary> load() async {

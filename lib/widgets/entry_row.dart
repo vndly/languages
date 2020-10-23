@@ -1,5 +1,5 @@
 import 'package:Languages/json/json_entry.dart';
-import 'package:Languages/player/player.dart';
+import 'package:Languages/models/player.dart';
 import 'package:flutter/material.dart';
 
 class EntryRow extends StatelessWidget {

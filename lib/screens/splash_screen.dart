@@ -1,3 +1,4 @@
+import 'package:Languages/models/known_words.dart';
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/screens/home_screen.dart';
 import 'package:dafluta/dafluta.dart';
@@ -23,7 +24,8 @@ class _SplashScreenState extends State<SplashScreen> {
   Future _init() async {
     try {
       await Firebase.initializeApp();
-      final vocabulary = await Vocabulary.load();
+      await KnownWords.init();
+      final Vocabulary vocabulary = await Vocabulary.load();
       Navigator.of(context).pushReplacement(HomeScren.instance(vocabulary));
       Vocabulary.syncData();
     } catch (e) {

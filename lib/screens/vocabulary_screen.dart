@@ -1,5 +1,6 @@
+import 'package:Languages/models/known_words.dart';
 import 'package:Languages/models/vocabulary.dart';
-import 'package:Languages/player/player.dart';
+import 'package:Languages/models/player.dart';
 import 'package:flutter/material.dart';
 
 class VocabularyScreen extends StatefulWidget {
@@ -127,19 +128,21 @@ class _ContentState extends State<Content> {
   }
 
   void _onIncorrect() {
-    widget.nextExpression();
-
     setState(() {
       hide = true;
     });
+
+    widget.nextExpression();
   }
 
-  void _onCorrect() {
-    widget.nextExpression();
+  Future _onCorrect() async {
+    await KnownWords.add(widget.expression.spanish);
 
     setState(() {
       hide = true;
     });
+
+    widget.nextExpression();
   }
 }
 
