@@ -10,11 +10,7 @@ class KnownWords {
     knownWords.addAll(await _loadKnownWords());
   }
 
-  static bool contains(String word) {
-    print(knownWords);
-
-    return knownWords.contains(word);
-  }
+  static bool contains(String word) => knownWords.contains(word);
 
   static Future add(String word) async {
     final List<String> result = await _loadKnownWords();

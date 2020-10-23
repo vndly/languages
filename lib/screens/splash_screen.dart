@@ -29,13 +29,13 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushReplacement(HomeScren.instance(vocabulary));
       Vocabulary.syncData();
     } catch (e) {
-      print(e);
-      _showError();
+      _showError(e);
     }
   }
 
-  void _showError() => _scaffoldKey.currentState.showSnackBar(const SnackBar(
-        content: Text('Error downloading data'),
+  void _showError(Exception e) =>
+      _scaffoldKey.currentState.showSnackBar(SnackBar(
+        content: Text(e.toString()),
       ));
 
   @override
