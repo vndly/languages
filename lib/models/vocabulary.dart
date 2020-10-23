@@ -32,12 +32,17 @@ class Vocabulary {
         final data = doc.data();
 
         for (final MapEntry<String, dynamic> entry in data.entries) {
-          entries.add(JsonEntry(es: entry.key, fr: entry.value.toString()));
-          expressions.add(Expression(
-            category: doc.id,
-            spanish: entry.key,
-            french: entry.value.toString(),
-          ));
+          final String spanish = entry.key;
+          final String french = entry.value.toString();
+
+          if (spanish.isNotEmpty && french.isNotEmpty) {
+            entries.add(JsonEntry(es: spanish, fr: french));
+            expressions.add(Expression(
+              category: doc.id,
+              spanish: spanish,
+              french: french,
+            ));
+          }
         }
 
         categories.add(JsonCategory(name: doc.id, values: entries));

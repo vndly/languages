@@ -39,7 +39,7 @@ class Empty extends StatelessWidget {
   Widget build(BuildContext context) {
     return Center(
       child: OptionButton(
-        icon: Icons.play_arrow_outlined,
+        icon: Icons.play_arrow,
         color: Colors.blue,
         onPressed: _onStart,
       ),
@@ -102,21 +102,15 @@ class _ContentState extends State<Content> {
               mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 OptionButton(
-                  icon: Icons.cancel_outlined,
+                  icon: Icons.close,
                   color: Colors.red,
-                  onPressed: _onBad,
-                ),
-                const SizedBox(width: 20),
-                OptionButton(
-                  icon: Icons.warning_amber_rounded,
-                  color: Colors.orange,
-                  onPressed: _onNormal,
+                  onPressed: _onIncorrect,
                 ),
                 const SizedBox(width: 20),
                 OptionButton(
                   icon: Icons.check,
                   color: Colors.green,
-                  onPressed: _onGood,
+                  onPressed: _onCorrect,
                 ),
               ],
             ),
@@ -132,7 +126,7 @@ class _ContentState extends State<Content> {
     });
   }
 
-  void _onBad() {
+  void _onIncorrect() {
     widget.nextExpression();
 
     setState(() {
@@ -140,15 +134,7 @@ class _ContentState extends State<Content> {
     });
   }
 
-  void _onNormal() {
-    widget.nextExpression();
-
-    setState(() {
-      hide = true;
-    });
-  }
-
-  void _onGood() {
+  void _onCorrect() {
     widget.nextExpression();
 
     setState(() {
@@ -193,11 +179,18 @@ class ExpressionText extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return InkWell(
-      onTap: _onPlay,
-      child: Text(
-        text,
-        style: TextStyle(fontSize: 40, color: Colors.grey[800]),
+    return Padding(
+      padding: const EdgeInsets.fromLTRB(20, 0, 20, 0),
+      child: InkWell(
+        onTap: _onPlay,
+        child: Text(
+          text,
+          textAlign: TextAlign.center,
+          style: TextStyle(
+            fontSize: 40,
+            color: Colors.grey[800],
+          ),
+        ),
       ),
     );
   }
