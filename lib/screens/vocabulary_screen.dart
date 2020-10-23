@@ -66,13 +66,13 @@ class _ContentState extends State<Content> {
   @override
   void initState() {
     super.initState();
-    Player.playSingle(Player.SPANISH, widget.expression.spanish);
+    Player.playSingle(Player.SPANISH, widget.expression.origin);
   }
 
   @override
   void didUpdateWidget(covariant Content oldWidget) {
     super.didUpdateWidget(oldWidget);
-    Player.playSingle(Player.SPANISH, widget.expression.spanish);
+    Player.playSingle(Player.SPANISH, widget.expression.origin);
   }
 
   @override
@@ -81,7 +81,7 @@ class _ContentState extends State<Content> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ExpressionText(Player.SPANISH, widget.expression.spanish),
+          ExpressionText(Player.SPANISH, widget.expression.origin),
           const SizedBox(height: 20),
           if (hide)
             Column(
@@ -96,7 +96,7 @@ class _ContentState extends State<Content> {
               ],
             )
           else
-            ExpressionText(Player.FRENCH, widget.expression.french),
+            ExpressionText(Player.FRENCH, widget.expression.target),
           const SizedBox(height: 50),
           if (!hide)
             Row(
@@ -121,7 +121,7 @@ class _ContentState extends State<Content> {
   }
 
   void _onReveal() {
-    Player.playSingle(Player.FRENCH, widget.expression.french);
+    Player.playSingle(Player.FRENCH, widget.expression.target);
     setState(() {
       hide = false;
     });
@@ -136,7 +136,7 @@ class _ContentState extends State<Content> {
   }
 
   Future _onCorrect() async {
-    await KnownWords.add(widget.expression.spanish);
+    await KnownWords.add(widget.expression.origin);
 
     setState(() {
       hide = true;

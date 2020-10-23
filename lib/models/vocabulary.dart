@@ -20,7 +20,7 @@ class Vocabulary {
   Expression get randomExpression {
     Expression expression = _randomExpression();
 
-    while (KnownWords.contains(expression.spanish)) {
+    while (KnownWords.contains(expression.origin)) {
       expression = _randomExpression();
     }
 
@@ -43,15 +43,15 @@ class Vocabulary {
         final data = doc.data();
 
         for (final MapEntry<String, dynamic> entry in data.entries) {
-          final String spanish = entry.key;
-          final String french = entry.value.toString();
+          final String origin = entry.key;
+          final String target = entry.value.toString();
 
-          if (spanish.isNotEmpty && french.isNotEmpty) {
-            entries.add(JsonEntry(es: spanish, fr: french));
+          if (origin.isNotEmpty && target.isNotEmpty) {
+            entries.add(JsonEntry(es: origin, fr: target));
             expressions.add(Expression(
               category: doc.id,
-              spanish: spanish,
-              french: french,
+              origin: origin,
+              target: target,
             ));
           }
         }
@@ -70,16 +70,16 @@ class Vocabulary {
 
   void _check() {
     for (final Expression expression in expressions) {
-      final occurrencesSpanish =
-          _occurrences(Player.SPANISH, expression.spanish);
-      final occurrencesFrench = _occurrences(Player.FRENCH, expression.french);
+      final occurrencesOrigin =
+          _occurrences(Player.SPANISH, expression.origin);
+      final occurrencesTarget = _occurrences(Player.FRENCH, expression.target);
 
-      if (occurrencesSpanish > 1) {
-        print('${expression.category} ${expression.spanish}');
+      if (occurrencesOrigin > 1) {
+        print('${expression.category} ${expression.origin}');
       }
 
-      if (occurrencesFrench > 1) {
-        print('${expression.category} ${expression.french}');
+      if (occurrencesTarget > 1) {
+        print('${expression.category} ${expression.target}');
       }
     }
   }
@@ -89,9 +89,9 @@ class Vocabulary {
 
     if (word.isNotEmpty) {
       for (final Expression expression in expressions) {
-        if ((language == Player.SPANISH) && (expression.spanish == word)) {
+        if ((language == Player.SPANISH) && (expression.origin == word)) {
           result++;
-        } else if ((language == Player.FRENCH) && (expression.french == word)) {
+        } else if ((language == Player.FRENCH) && (expression.target == word)) {
           result++;
         }
       }
@@ -129,12 +129,12 @@ class Vocabulary {
 
 class Expression {
   final String category;
-  final String spanish;
-  final String french;
+  final String origin;
+  final String target;
 
   const Expression({
     this.category,
-    this.spanish,
-    this.french,
+    this.origin,
+    this.target,
   });
 }
