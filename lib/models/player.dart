@@ -4,8 +4,8 @@ class Player {
   static final FlutterTts tts = FlutterTts();
   static PlayerState state = PlayerState.PLAYING_1;
 
-  static const String SPANISH = 'es-ES';
-  static const String FRENCH = 'fr-FR';
+  static const String ORIGIN_LANGUAGE = 'es-ES';
+  static const String TARGET_LANGUAGE = 'fr-FR';
 
   static Future playMultiple(
     String language1,

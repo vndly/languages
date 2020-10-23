@@ -71,8 +71,8 @@ class Vocabulary {
   void _check() {
     for (final Expression expression in expressions) {
       final occurrencesOrigin =
-          _occurrences(Player.SPANISH, expression.origin);
-      final occurrencesTarget = _occurrences(Player.FRENCH, expression.target);
+          _occurrences(Player.ORIGIN_LANGUAGE, expression.origin);
+      final occurrencesTarget = _occurrences(Player.TARGET_LANGUAGE, expression.target);
 
       if (occurrencesOrigin > 1) {
         print('${expression.category} ${expression.origin}');
@@ -89,9 +89,9 @@ class Vocabulary {
 
     if (word.isNotEmpty) {
       for (final Expression expression in expressions) {
-        if ((language == Player.SPANISH) && (expression.origin == word)) {
+        if ((language == Player.ORIGIN_LANGUAGE) && (expression.origin == word)) {
           result++;
-        } else if ((language == Player.FRENCH) && (expression.target == word)) {
+        } else if ((language == Player.TARGET_LANGUAGE) && (expression.target == word)) {
           result++;
         }
       }
