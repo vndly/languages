@@ -24,11 +24,13 @@ class Vocabulary {
 
     for (final JsonCategory category in categories) {
       for (final JsonEntry entry in category.values) {
-        expressions.add(JsonExpression(
-          category: category.name,
-          origin: entry.origin,
-          target: entry.target,
-        ));
+        if (entry.origin.isNotEmpty && entry.target.isNotEmpty) {
+          expressions.add(JsonExpression(
+            category: category.name,
+            origin: entry.origin,
+            target: entry.target,
+          ));
+        }
       }
     }
 

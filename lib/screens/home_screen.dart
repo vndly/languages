@@ -1,5 +1,6 @@
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/screens/catalogue_screen.dart';
+import 'package:Languages/screens/listening_screen.dart';
 import 'package:Languages/screens/vocabulary_screen.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
@@ -29,6 +30,8 @@ class _HomeScrenState extends State<HomeScren> {
     if (position == 0) {
       return VocabularyScreen(widget.vocabulary);
     } else if (position == 1) {
+      return ListeningScreen(widget.vocabulary);
+    } else if (position == 2) {
       return CatalogueScreen(widget.vocabulary);
     } else {
       throw Exception();
@@ -43,6 +46,10 @@ class _HomeScrenState extends State<HomeScren> {
           BottomNavigationBarItem(
             icon: Icon(Icons.record_voice_over_sharp),
             label: 'Vocabulary',
+          ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.headset),
+            label: 'Listen',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.list_alt),

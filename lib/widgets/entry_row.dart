@@ -24,10 +24,6 @@ class EntryRow extends StatelessWidget {
     );
   }
 
-  void _onSelected() => Player.playMultiple(
-        Vocabulary.ORIGIN_LANGUAGE,
-        origin,
-        Vocabulary.TARGET_LANGUAGE,
-        target,
-      );
+  void _onSelected() => Player.playMultiple(Vocabulary.ORIGIN_LANGUAGE, origin,
+      Vocabulary.TARGET_LANGUAGE, target, () {});
 }

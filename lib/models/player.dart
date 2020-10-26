@@ -9,6 +9,7 @@ class Player {
     String text1,
     String language2,
     String text2,
+    Function onComplete,
   ) async {
     tts.setCompletionHandler(() async {
       switch (state) {
@@ -19,6 +20,7 @@ class Player {
 
         case PlayerState.PLAYING_TARGET:
           state = PlayerState.PLAYING_ORIGIN;
+          onComplete();
           break;
       }
     });
