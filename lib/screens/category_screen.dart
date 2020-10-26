@@ -20,8 +20,10 @@ class CategoryScreen extends StatelessWidget {
             Toolbar(title: category.name),
             Expanded(
               child: ListView.builder(
-                itemBuilder: (context, position) =>
-                    EntryRow(category.values[position]),
+                itemBuilder: (context, position) => EntryRow(
+                  origin: category.values[position].origin,
+                  target: category.values[position].target,
+                ),
                 itemCount: category.values.length,
               ),
             ),

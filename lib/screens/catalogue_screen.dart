@@ -1,5 +1,4 @@
-import 'package:Languages/json/json_category.dart';
-import 'package:Languages/json/json_entry.dart';
+import 'package:Languages/json/json_expression.dart';
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/widgets/category_row.dart';
 import 'package:Languages/widgets/entry_row.dart';
@@ -15,7 +14,7 @@ class CatalogueScreen extends StatefulWidget {
 }
 
 class _CatalogueScreenState extends State<CatalogueScreen> {
-  List<JsonEntry> result;
+  List<JsonExpression> result;
   final searchController = TextEditingController();
 
   @override
@@ -68,7 +67,10 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
         else
           Expanded(
             child: ListView.builder(
-              itemBuilder: (context, position) => EntryRow(result[position]),
+              itemBuilder: (context, position) => EntryRow(
+                origin: result[position].origin,
+                target: result[position].target,
+              ),
               itemCount: result.length,
             ),
           )
@@ -82,18 +84,8 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
         result = null;
       });
     } else {
-      final List<JsonEntry> entries = [];
-
-      for (final JsonCategory category in widget.vocabulary.categories) {
-        for (final JsonEntry entry in category.values) {
-          if (entry.matches(text)) {
-            entries.add(entry);
-          }
-        }
-      }
-
       setState(() {
-        result = entries;
+        result = widget.vocabulary.search(text);
       });
     }
   }

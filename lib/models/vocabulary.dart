@@ -18,6 +18,7 @@ class Vocabulary {
   void fill(List<JsonCategory> newCategories) {
     categories.clear();
     categories.addAll(newCategories);
+    categories.sort((c1, c2) => c1.name.compareTo(c2.name));
 
     expressions.clear();
 
@@ -30,6 +31,8 @@ class Vocabulary {
         ));
       }
     }
+
+    expressions.sort((e1, e2) => e1.origin.compareTo(e2.origin));
   }
 
   int get length => categories.length;
@@ -37,6 +40,20 @@ class Vocabulary {
   int get size => expressions.length;
 
   JsonCategory category(int index) => categories[index];
+
+  List<JsonExpression> search(String query) {
+    final List<JsonExpression> result = [];
+
+    for (final JsonExpression entry in expressions) {
+      if (entry.matches(query)) {
+        result.add(entry);
+      }
+    }
+
+    result.sort((e1, e2) => e1.origin.compareTo(e2.origin));
+
+    return result;
+  }
 
   JsonExpression get randomExpression {
     JsonExpression expression = _randomExpression();

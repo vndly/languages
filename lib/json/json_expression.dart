@@ -14,6 +14,10 @@ class JsonExpression {
     this.target = '',
   });
 
+  bool matches(String text) =>
+      origin.toLowerCase().contains(text.toLowerCase()) ||
+      target.toLowerCase().contains(text.toLowerCase());
+
   factory JsonExpression.fromJson(Map<String, dynamic> json) =>
       _$JsonExpressionFromJson(json);
 
