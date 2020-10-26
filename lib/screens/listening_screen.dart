@@ -95,7 +95,7 @@ class _ContentState extends State<Content> {
           OptionButton(
             icon: Icons.stop,
             color: Colors.red,
-            onPressed: widget.stop,
+            onPressed: _onStop,
           ),
         ],
       ),
@@ -115,8 +115,15 @@ class _ContentState extends State<Content> {
   }
 
   void _onNext() {
-    setState(() {
-      widget.start();
-    });
+    if (playing) {
+      setState(() {
+        widget.start();
+      });
+    }
+  }
+
+  void _onStop() {
+    playing = false;
+    widget.stop();
   }
 }
