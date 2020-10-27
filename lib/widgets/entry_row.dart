@@ -3,10 +3,12 @@ import 'package:Languages/models/vocabulary.dart';
 import 'package:flutter/material.dart';
 
 class EntryRow extends StatelessWidget {
+  final Vocabulary vocabulary;
   final String origin;
   final String target;
 
   const EntryRow({
+    @required this.vocabulary,
     @required this.origin,
     @required this.target,
   });
@@ -24,6 +26,11 @@ class EntryRow extends StatelessWidget {
     );
   }
 
-  void _onSelected() => Player.playMultiple(Vocabulary.ORIGIN_LANGUAGE, origin,
-      Vocabulary.TARGET_LANGUAGE, target, () {});
+  void _onSelected() => Player.playMultiple(
+        vocabulary.originLocale,
+        origin,
+        vocabulary.targetLocale,
+        target,
+        () {},
+      );
 }

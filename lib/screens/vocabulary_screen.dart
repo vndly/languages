@@ -23,7 +23,7 @@ class _VocabularyScreenState extends State<VocabularyScreen> {
     if (expression == null) {
       return Empty(_nextExpression);
     } else {
-      return Content(expression, _nextExpression);
+      return Content(widget.vocabulary, expression, _nextExpression);
     }
   }
 
@@ -54,10 +54,11 @@ class Empty extends StatelessWidget {
 }
 
 class Content extends StatefulWidget {
+  final Vocabulary vocabulary;
   final JsonExpression expression;
   final Function nextExpression;
 
-  const Content(this.expression, this.nextExpression);
+  const Content(this.vocabulary, this.expression, this.nextExpression);
 
   @override
   _ContentState createState() => _ContentState();
@@ -69,13 +70,13 @@ class _ContentState extends State<Content> {
   @override
   void initState() {
     super.initState();
-    Player.playSingle(Vocabulary.ORIGIN_LANGUAGE, widget.expression.origin);
+    Player.playSingle(widget.vocabulary.originLocale, widget.expression.origin);
   }
 
   @override
   void didUpdateWidget(covariant Content oldWidget) {
     super.didUpdateWidget(oldWidget);
-    Player.playSingle(Vocabulary.ORIGIN_LANGUAGE, widget.expression.origin);
+    Player.playSingle(widget.vocabulary.originLocale, widget.expression.origin);
   }
 
   @override
@@ -84,7 +85,10 @@ class _ContentState extends State<Content> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ExpressionText(Vocabulary.ORIGIN_LANGUAGE, widget.expression.origin),
+          ExpressionText(
+            widget.vocabulary.originLocale,
+            widget.expression.origin,
+          ),
           const SizedBox(height: 20),
           if (hide)
             Column(
@@ -101,7 +105,9 @@ class _ContentState extends State<Content> {
             )
           else
             ExpressionText(
-                Vocabulary.TARGET_LANGUAGE, widget.expression.target),
+              widget.vocabulary.targetLocale,
+              widget.expression.target,
+            ),
           const SizedBox(height: 50),
           if (!hide)
             Row(
@@ -126,7 +132,7 @@ class _ContentState extends State<Content> {
   }
 
   void _onReveal() {
-    Player.playSingle(Vocabulary.TARGET_LANGUAGE, widget.expression.target);
+    Player.playSingle(widget.vocabulary.targetLocale, widget.expression.target);
     setState(() {
       hide = false;
     });

@@ -1,15 +1,18 @@
 import 'package:Languages/json/json_category.dart';
+import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/widgets/entry_row.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatelessWidget {
+  final Vocabulary vocabulary;
   final JsonCategory category;
 
-  const CategoryScreen(this.category);
+  const CategoryScreen(this.vocabulary, this.category);
 
-  static PageRouteBuilder<CategoryScreen> instance(JsonCategory category) =>
-      RightLeftRoute<CategoryScreen>(CategoryScreen(category));
+  static PageRouteBuilder<CategoryScreen> instance(
+          Vocabulary vocabulary, JsonCategory category) =>
+      RightLeftRoute<CategoryScreen>(CategoryScreen(vocabulary, category));
 
   @override
   Widget build(BuildContext context) {
@@ -21,6 +24,7 @@ class CategoryScreen extends StatelessWidget {
             Expanded(
               child: ListView.builder(
                 itemBuilder: (context, position) => EntryRow(
+                  vocabulary: vocabulary,
                   origin: category.values[position].origin,
                   target: category.values[position].target,
                 ),

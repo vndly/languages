@@ -22,7 +22,7 @@ class _ListeningScreenState extends State<ListeningScreen> {
     if (expression == null) {
       return Empty(_start);
     } else {
-      return Content(expression, _start, _stop);
+      return Content(widget.vocabulary, expression, _start, _stop);
     }
   }
 
@@ -57,11 +57,12 @@ class Empty extends StatelessWidget {
 }
 
 class Content extends StatefulWidget {
+  final Vocabulary vocabulary;
   final JsonExpression expression;
   final Function start;
   final Function stop;
 
-  const Content(this.expression, this.start, this.stop);
+  const Content(this.vocabulary, this.expression, this.start, this.stop);
 
   @override
   _ContentState createState() => _ContentState();
@@ -88,9 +89,15 @@ class _ContentState extends State<Content> {
       child: Column(
         mainAxisSize: MainAxisSize.min,
         children: [
-          ExpressionText(Vocabulary.ORIGIN_LANGUAGE, widget.expression.origin),
+          ExpressionText(
+            widget.vocabulary.originLocale,
+            widget.expression.origin,
+          ),
           const SizedBox(height: 20),
-          ExpressionText(Vocabulary.TARGET_LANGUAGE, widget.expression.target),
+          ExpressionText(
+            widget.vocabulary.targetLocale,
+            widget.expression.target,
+          ),
           const SizedBox(height: 50),
           OptionButton(
             icon: Icons.stop,
@@ -105,9 +112,9 @@ class _ContentState extends State<Content> {
   void _play() {
     if (playing) {
       Player.playMultiple(
-        Vocabulary.ORIGIN_LANGUAGE,
+        widget.vocabulary.originLocale,
         widget.expression.origin,
-        Vocabulary.TARGET_LANGUAGE,
+        widget.vocabulary.targetLocale,
         widget.expression.target,
         _onNext,
       );

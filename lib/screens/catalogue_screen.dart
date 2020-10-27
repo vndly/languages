@@ -59,8 +59,10 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
         if (result == null)
           Expanded(
             child: ListView.builder(
-              itemBuilder: (context, position) =>
-                  CategoryRow(widget.vocabulary.category(position)),
+              itemBuilder: (context, position) => CategoryRow(
+                widget.vocabulary,
+                widget.vocabulary.category(position),
+              ),
               itemCount: widget.vocabulary.length,
             ),
           )
@@ -68,6 +70,7 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
           Expanded(
             child: ListView.builder(
               itemBuilder: (context, position) => EntryRow(
+                vocabulary: widget.vocabulary,
                 origin: result[position].origin,
                 target: result[position].target,
               ),

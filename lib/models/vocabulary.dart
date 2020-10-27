@@ -1,19 +1,25 @@
 import 'dart:math';
-import 'package:Languages/api/categories/get_categories.dart';
+import 'package:Languages/api/get_categories.dart';
 import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_entry.dart';
 import 'package:Languages/json/json_expression.dart';
+import 'package:Languages/json/json_profile.dart';
 import 'package:Languages/storage/categories_storage.dart';
 import 'package:Languages/storage/known_words_storage.dart';
+import 'package:Languages/storage/profile_storage.dart';
 
 class Vocabulary {
   final List<JsonCategory> categories;
   final List<JsonExpression> expressions;
+  final String originLocale;
+  final String targetLocale;
 
-  static const String ORIGIN_LANGUAGE = 'es-ES';
-  static const String TARGET_LANGUAGE = 'fr-FR';
-
-  Vocabulary(this.categories, this.expressions);
+  Vocabulary(
+    this.categories,
+    this.expressions,
+    this.originLocale,
+    this.targetLocale,
+  );
 
   void fill(List<JsonCategory> newCategories) {
     categories.clear();
@@ -71,7 +77,14 @@ class Vocabulary {
       expressions[Random().nextInt(expressions.length)];
 
   static Future<Vocabulary> load() async {
-    final vocabulary = Vocabulary([], []);
+    final JsonProfile profile = await ProfileStorage.load();
+
+    final vocabulary = Vocabulary(
+      [],
+      [],
+      profile.origin,
+      profile.target,
+    );
 
     try {
       final List<JsonCategory> categories = [];
@@ -111,10 +124,8 @@ class Vocabulary {
 
   void _check() {
     for (final JsonExpression expression in expressions) {
-      final occurrencesOrigin =
-          _occurrences(Vocabulary.ORIGIN_LANGUAGE, expression.origin);
-      final occurrencesTarget =
-          _occurrences(Vocabulary.TARGET_LANGUAGE, expression.target);
+      final occurrencesOrigin = _occurrences(originLocale, expression.origin);
+      final occurrencesTarget = _occurrences(targetLocale, expression.target);
 
       if (occurrencesOrigin > 1) {
         print('${expression.category} ${expression.origin}');
@@ -131,11 +142,9 @@ class Vocabulary {
 
     if (word.isNotEmpty) {
       for (final JsonExpression expression in expressions) {
-        if ((language == Vocabulary.ORIGIN_LANGUAGE) &&
-            (expression.origin == word)) {
+        if ((language == originLocale) && (expression.origin == word)) {
           result++;
-        } else if ((language == Vocabulary.TARGET_LANGUAGE) &&
-            (expression.target == word)) {
+        } else if ((language == targetLocale) && (expression.target == word)) {
           result++;
         }
       }
