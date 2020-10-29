@@ -4,7 +4,9 @@ import 'package:Languages/json/json_category.dart';
 import 'package:Languages/json/json_expression.dart';
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/screens/expression_list_screen.dart';
+import 'package:Languages/screens/known_words_screen.dart';
 import 'package:Languages/storage/categories_storage.dart';
+import 'package:Languages/storage/known_words_storage.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
@@ -37,6 +39,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
         const Divider(height: 0.5),
         ButtonUntranslated(widget.vocabulary),
         const Divider(height: 0.5),
+        ButtonKnownWords(widget.vocabulary),
+        const Divider(height: 0.5),
         ButtonSynchronize(widget.vocabulary, _reload),
       ],
     );
@@ -54,13 +58,8 @@ class ButtonDuplicates extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<JsonExpression> duplicates = vocabulary.duplicates();
 
-    return ListTile(
-      title: Text('${duplicates.length} duplicates'),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
-        color: Colors.grey,
-        size: 12,
-      ),
+    return SettingsRow(
+      title: '${duplicates.length} duplicates',
       onTap: () => _onSelected(context, duplicates),
     );
   }
@@ -82,13 +81,8 @@ class ButtonUntranslated extends StatelessWidget {
   Widget build(BuildContext context) {
     final List<JsonExpression> untranslated = vocabulary.untranslated();
 
-    return ListTile(
-      title: Text('${untranslated.length} untranslated'),
-      trailing: const Icon(
-        Icons.arrow_forward_ios,
-        color: Colors.grey,
-        size: 12,
-      ),
+    return SettingsRow(
+      title: '${untranslated.length} untranslated',
       onTap: () => _onSelected(context, untranslated),
     );
   }
@@ -101,6 +95,43 @@ class ButtonUntranslated extends StatelessWidget {
           .push(ExpressionListScreen.instance('Untranslated', untranslated));
 }
 
+class ButtonKnownWords extends StatefulWidget {
+  final Vocabulary vocabulary;
+
+  const ButtonKnownWords(this.vocabulary);
+
+  @override
+  _ButtonKnownWordsState createState() => _ButtonKnownWordsState();
+}
+
+class _ButtonKnownWordsState extends State<ButtonKnownWords> {
+  @override
+  Widget build(BuildContext context) {
+    return FutureBuilder<List<String>>(
+        future: KnownWordsStorage.load(),
+        builder: (context, snapshot) {
+          if (snapshot.hasData) {
+            return SettingsRow(
+              title: '${snapshot.data.length} known words',
+              onTap: () => _onSelected(context, snapshot.data),
+            );
+          } else {
+            return const SettingsRow(
+              title: '0 known words',
+            );
+          }
+        });
+  }
+
+  Future _onSelected(
+    BuildContext context,
+    List<String> knownWords,
+  ) async {
+    await Navigator.of(context).push(KnownWordsScreen.instance(knownWords));
+    setState(() {});
+  }
+}
+
 class ButtonSynchronize extends StatelessWidget {
   final Vocabulary vocabulary;
   final Function reload;
@@ -109,9 +140,10 @@ class ButtonSynchronize extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return ListTile(
-      title: const Text('Synchronize'),
+    return SettingsRow(
+      title: 'Synchronize',
       onTap: () => _onSelected(context),
+      showArrow: false,
     );
   }
 
@@ -131,5 +163,32 @@ class ButtonSynchronize extends StatelessWidget {
     } else {
       Dialogs.showErrorDialog(context, 'Error downloading data');
     }
+  }
+}
+
+class SettingsRow extends StatelessWidget {
+  final String title;
+  final Function onTap;
+  final bool showArrow;
+
+  const SettingsRow({
+    this.title,
+    this.onTap,
+    this.showArrow = true,
+  });
+
+  @override
+  Widget build(BuildContext context) {
+    return ListTile(
+      title: Text(title),
+      trailing: showArrow
+          ? const Icon(
+              Icons.arrow_forward_ios,
+              color: Colors.grey,
+              size: 12,
+            )
+          : null,
+      onTap: onTap,
+    );
   }
 }

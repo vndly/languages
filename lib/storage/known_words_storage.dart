@@ -7,19 +7,26 @@ class KnownWordsStorage {
 
   static Future init() async {
     knownWords.clear();
-    knownWords.addAll(await _loadKnownWords());
+    knownWords.addAll(await load());
   }
 
   static bool contains(String word) => knownWords.contains(word);
 
   static Future add(String word) async {
-    final List<String> result = await _loadKnownWords();
+    final List<String> result = await load();
     result.add(word);
     knownWords.add(word);
-    _saveKnownWords(result);
+    _save(result);
   }
 
-  static Future<List<String>> _loadKnownWords() async {
+  static Future remove(String word) async {
+    final List<String> result = await load();
+    result.remove(word);
+    knownWords.remove(word);
+    _save(result);
+  }
+
+  static Future<List<String>> load() async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
 
     if (prefs.containsKey(KNOWN_WORDS)) {
@@ -32,7 +39,7 @@ class KnownWordsStorage {
     }
   }
 
-  static Future _saveKnownWords(List<String> words) async {
+  static Future _save(List<String> words) async {
     final SharedPreferences prefs = await SharedPreferences.getInstance();
     await prefs.setString(KNOWN_WORDS, jsonEncode(words));
   }
