@@ -1,6 +1,6 @@
 name: Languages
 description: A Flutter app to learn languages
-version: 1.0.0+10
+version: 1.0.0+11
 
 environment:
   sdk: ">=2.9.0 <3.0.0"
