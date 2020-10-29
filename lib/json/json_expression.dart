@@ -14,6 +14,8 @@ class JsonExpression {
     this.target = '',
   });
 
+  bool get isNotEmpty => origin.isNotEmpty && target.isNotEmpty;
+
   bool matches(String text) =>
       origin.toLowerCase().contains(text.toLowerCase()) ||
       target.toLowerCase().contains(text.toLowerCase());

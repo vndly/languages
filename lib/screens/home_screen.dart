@@ -1,6 +1,7 @@
 import 'package:Languages/models/vocabulary.dart';
 import 'package:Languages/screens/catalogue_screen.dart';
 import 'package:Languages/screens/listening_screen.dart';
+import 'package:Languages/screens/settings_screen.dart';
 import 'package:Languages/screens/vocabulary_screen.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
@@ -33,6 +34,8 @@ class _HomeScrenState extends State<HomeScren> {
       return ListeningScreen(widget.vocabulary);
     } else if (position == 2) {
       return CatalogueScreen(widget.vocabulary);
+    } else if (position == 3) {
+      return SettingsScreen(widget.vocabulary);
     } else {
       throw Exception();
     }
@@ -55,7 +58,12 @@ class _HomeScrenState extends State<HomeScren> {
             icon: Icon(Icons.list_alt),
             label: 'Catalogue',
           ),
+          BottomNavigationBarItem(
+            icon: Icon(Icons.settings),
+            label: 'Settings',
+          ),
         ],
+        type: BottomNavigationBarType.fixed,
         backgroundColor: Colors.white,
         currentIndex: _selectedIndex,
         onTap: _onPageChanged,

@@ -30,13 +30,11 @@ class Vocabulary {
 
     for (final JsonCategory category in categories) {
       for (final JsonEntry entry in category.values) {
-        if (entry.origin.isNotEmpty && entry.target.isNotEmpty) {
-          expressions.add(JsonExpression(
-            category: category.name,
-            origin: entry.origin,
-            target: entry.target,
-          ));
-        }
+        expressions.add(JsonExpression(
+          category: category.name,
+          origin: entry.origin,
+          target: entry.target,
+        ));
       }
     }
 
@@ -66,7 +64,8 @@ class Vocabulary {
   JsonExpression get randomExpression {
     JsonExpression expression = _randomExpression();
 
-    while (KnownWordsStorage.contains(expression.origin)) {
+    while (KnownWordsStorage.contains(expression.origin) &&
+        expression.isNotEmpty) {
       expression = _randomExpression();
     }
 
@@ -115,26 +114,37 @@ class Vocabulary {
     if (result.success) {
       final List<JsonCategory> categories = result.data;
       vocabulary.fill(categories);
-      vocabulary._check();
       CategoriesStorage.save(categories);
     }
 
     print('Sync completed!');
   }
 
-  void _check() {
+  List<JsonExpression> duplicates() {
+    final List<JsonExpression> result = [];
+
     for (final JsonExpression expression in expressions) {
       final occurrencesOrigin = _occurrences(originLocale, expression.origin);
       final occurrencesTarget = _occurrences(targetLocale, expression.target);
 
-      if (occurrencesOrigin > 1) {
-        print('${expression.category} ${expression.origin}');
-      }
-
-      if (occurrencesTarget > 1) {
-        print('${expression.category} ${expression.target}');
+      if ((occurrencesOrigin > 1) || (occurrencesTarget > 1)) {
+        result.add(expression);
       }
     }
+
+    return result;
+  }
+
+  List<JsonExpression> untranslated() {
+    final List<JsonExpression> result = [];
+
+    for (final JsonExpression expression in expressions) {
+      if (!expression.isNotEmpty) {
+        result.add(expression);
+      }
+    }
+
+    return result;
   }
 
   int _occurrences(String language, String word) {

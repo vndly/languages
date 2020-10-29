@@ -15,7 +15,7 @@ class CatalogueScreen extends StatefulWidget {
 
 class _CatalogueScreenState extends State<CatalogueScreen> {
   List<JsonExpression> result;
-  final searchController = TextEditingController();
+  final controller = TextEditingController();
 
   @override
   Widget build(BuildContext context) {
@@ -27,7 +27,7 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
             minLines: 1,
             maxLines: 1,
             textAlignVertical: TextAlignVertical.center,
-            controller: searchController,
+            controller: controller,
             decoration: InputDecoration(
               filled: true,
               fillColor: Colors.grey[200],
@@ -35,13 +35,16 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
                 Icons.search,
                 color: Colors.blueGrey,
               ),
-              suffixIcon: IconButton(
-                icon: const Icon(
-                  Icons.clear,
-                  color: Colors.blueGrey,
-                ),
-                onPressed: _clear,
-              ),
+              suffixIcon: controller.text.isNotEmpty
+                  ? IconButton(
+                      icon: const Icon(
+                        Icons.clear,
+                        color: Colors.blueGrey,
+                        size: 20,
+                      ),
+                      onPressed: _clear,
+                    )
+                  : null,
               border: InputBorder.none,
               focusedBorder: InputBorder.none,
               enabledBorder: InputBorder.none,
@@ -95,7 +98,7 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
 
   void _clear() {
     setState(() {
-      searchController.text = '';
+      controller.text = '';
       _search('');
       FocusScope.of(context).unfocus();
     });
