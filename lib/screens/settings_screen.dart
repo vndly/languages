@@ -36,7 +36,7 @@ class SettingsScreen extends StatelessWidget {
           ),
           onTap: () => _onSeeDuplicates(context, duplicates),
         ),
-        const Divider(),
+        const Divider(height: 0.5),
         ListTile(
           title: Text('${untranslated.length} untranslated'),
           trailing: const Icon(
