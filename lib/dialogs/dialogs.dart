@@ -8,17 +8,20 @@ class Dialogs {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        return SimpleDialog(
-          contentPadding: const EdgeInsets.all(20),
-          children: [
-            Center(
-              child: Column(children: [
-                const CircularProgressIndicator(),
-                const VBox(20),
-                Text(message)
-              ]),
-            )
-          ],
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: SimpleDialog(
+            contentPadding: const EdgeInsets.all(20),
+            children: [
+              Center(
+                child: Column(children: [
+                  const CircularProgressIndicator(),
+                  const VBox(20),
+                  Text(message)
+                ]),
+              )
+            ],
+          ),
         );
       },
     );
@@ -34,15 +37,18 @@ class Dialogs {
       context: context,
       barrierDismissible: false,
       builder: (context) {
-        return AlertDialog(
-          contentPadding: const EdgeInsets.all(30),
-          content: Text(error),
-          actions: [
-            FlatButton(
-              onPressed: () => Navigator.of(context).pop(),
-              child: Text('Ok'.toUpperCase()),
-            ),
-          ],
+        return WillPopScope(
+          onWillPop: () async => false,
+          child: AlertDialog(
+            contentPadding: const EdgeInsets.all(30),
+            content: Text(error),
+            actions: [
+              FlatButton(
+                onPressed: () => Navigator.of(context).pop(),
+                child: Text('Ok'.toUpperCase()),
+              ),
+            ],
+          ),
         );
       },
     );
