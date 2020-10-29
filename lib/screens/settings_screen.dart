@@ -7,11 +7,16 @@ import 'package:Languages/screens/expression_list_screen.dart';
 import 'package:Languages/storage/categories_storage.dart';
 import 'package:flutter/material.dart';
 
-class SettingsScreen extends StatelessWidget {
+class SettingsScreen extends StatefulWidget {
   final Vocabulary vocabulary;
 
   const SettingsScreen(this.vocabulary);
 
+  @override
+  _SettingsScreenState createState() => _SettingsScreenState();
+}
+
+class _SettingsScreenState extends State<SettingsScreen> {
   @override
   Widget build(BuildContext context) {
     return Column(
@@ -28,14 +33,16 @@ class SettingsScreen extends StatelessWidget {
             ),
           ),
         ),
-        ButtonDuplicates(vocabulary),
+        ButtonDuplicates(widget.vocabulary),
         const Divider(height: 0.5),
-        ButtonUntranslated(vocabulary),
+        ButtonUntranslated(widget.vocabulary),
         const Divider(height: 0.5),
-        ButtonSynchronize(vocabulary),
+        ButtonSynchronize(widget.vocabulary, _reload),
       ],
     );
   }
+
+  void _reload() => setState(() {});
 }
 
 class ButtonDuplicates extends StatelessWidget {
@@ -94,16 +101,12 @@ class ButtonUntranslated extends StatelessWidget {
           .push(ExpressionListScreen.instance('Untranslated', untranslated));
 }
 
-class ButtonSynchronize extends StatefulWidget {
+class ButtonSynchronize extends StatelessWidget {
   final Vocabulary vocabulary;
+  final Function reload;
 
-  const ButtonSynchronize(this.vocabulary);
+  const ButtonSynchronize(this.vocabulary, this.reload);
 
-  @override
-  _ButtonSynchronizeState createState() => _ButtonSynchronizeState();
-}
-
-class _ButtonSynchronizeState extends State<ButtonSynchronize> {
   @override
   Widget build(BuildContext context) {
     return ListTile(
@@ -121,11 +124,10 @@ class _ButtonSynchronizeState extends State<ButtonSynchronize> {
     Navigator.of(dialog).pop();
 
     if (result.success) {
-      setState(() {
-        final List<JsonCategory> categories = result.data;
-        widget.vocabulary.fill(categories);
-        CategoriesStorage.save(categories);
-      });
+      final List<JsonCategory> categories = result.data;
+      vocabulary.fill(categories);
+      CategoriesStorage.save(categories);
+      reload();
     } else {
       Dialogs.showErrorDialog(context, 'Error downloading data');
     }
