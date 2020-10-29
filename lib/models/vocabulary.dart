@@ -132,6 +132,8 @@ class Vocabulary {
       }
     }
 
+    result.sort((e1, e2) => e1.origin.compareTo(e2.origin));
+
     return result;
   }
 
@@ -143,6 +145,8 @@ class Vocabulary {
         result.add(expression);
       }
     }
+
+    result.sort((e1, e2) => e1.origin.compareTo(e2.origin));
 
     return result;
   }
