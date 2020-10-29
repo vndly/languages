@@ -32,8 +32,10 @@ class KnownWordsStorage {
     if (prefs.containsKey(KNOWN_WORDS)) {
       final String data = prefs.getString(KNOWN_WORDS);
       final List<dynamic> json = jsonDecode(data) as List<dynamic>;
+      final List<String> list = json.map((w) => w.toString()).toList();
+      list.sort((w1, w2) => w1.compareTo(w2));
 
-      return json.map((w) => w.toString()).toList();
+      return list;
     } else {
       return [];
     }
