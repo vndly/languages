@@ -48,7 +48,7 @@ class _HomeScrenState extends State<HomeScren> {
         items: const [
           BottomNavigationBarItem(
             icon: Icon(Icons.record_voice_over_sharp),
-            label: 'Vocabulary',
+            label: 'Practice',
           ),
           BottomNavigationBarItem(
             icon: Icon(Icons.headset),
