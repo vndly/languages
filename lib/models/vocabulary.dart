@@ -64,8 +64,8 @@ class Vocabulary {
   JsonExpression get randomExpression {
     JsonExpression expression = _randomExpression();
 
-    while (KnownWordsStorage.contains(expression.origin) &&
-        expression.isNotEmpty) {
+    while (KnownWordsStorage.contains(expression.origin) ||
+        !expression.isNotEmpty) {
       expression = _randomExpression();
     }
 
