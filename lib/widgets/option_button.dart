@@ -16,7 +16,8 @@ class OptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      height: 85,
+      height: 100,
+      minWidth: 100,
       child: RaisedButton(
         color: color,
         onPressed: onPressed,
