@@ -6,6 +6,8 @@ import 'package:Languages/widgets/expression_text.dart';
 import 'package:Languages/widgets/option_button.dart';
 import 'package:flutter/material.dart';
 
+// TODO(momo): Don't repeat words in the same session
+// TODO(momo): Remove all duplicated
 class VocabularyScreen extends StatefulWidget {
   final Vocabulary vocabulary;
 
