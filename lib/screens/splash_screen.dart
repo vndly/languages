@@ -1,8 +1,8 @@
-import 'package:Languages/screens/setup_screen.dart';
-import 'package:Languages/storage/known_words_storage.dart';
-import 'package:Languages/models/vocabulary.dart';
-import 'package:Languages/screens/home_screen.dart';
-import 'package:Languages/storage/profile_storage.dart';
+import 'package:languages/screens/setup_screen.dart';
+import 'package:languages/storage/known_words_storage.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/screens/home_screen.dart';
+import 'package:languages/storage/profile_storage.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 

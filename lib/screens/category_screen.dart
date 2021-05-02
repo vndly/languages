@@ -1,8 +1,8 @@
-import 'package:Languages/json/json_category.dart';
-import 'package:Languages/models/vocabulary.dart';
-import 'package:Languages/widgets/empty_message.dart';
-import 'package:Languages/widgets/entry_row.dart';
-import 'package:Languages/widgets/toolbar.dart';
+import 'package:languages/json/json_category.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/widgets/empty_message.dart';
+import 'package:languages/widgets/entry_row.dart';
+import 'package:languages/widgets/toolbar.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 

@@ -1,7 +1,7 @@
 import 'dart:convert';
-import 'package:Languages/json/json_category.dart';
-import 'package:Languages/json/json_profile.dart';
-import 'package:Languages/storage/profile_storage.dart';
+import 'package:languages/json/json_category.dart';
+import 'package:languages/json/json_profile.dart';
+import 'package:languages/storage/profile_storage.dart';
 import 'package:dahttp/dahttp.dart';
 import 'package:http/http.dart';
 

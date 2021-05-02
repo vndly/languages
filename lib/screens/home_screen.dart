@@ -1,8 +1,8 @@
-import 'package:Languages/models/vocabulary.dart';
-import 'package:Languages/screens/catalogue_screen.dart';
-import 'package:Languages/screens/listening_screen.dart';
-import 'package:Languages/screens/settings_screen.dart';
-import 'package:Languages/screens/vocabulary_screen.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/screens/catalogue_screen.dart';
+import 'package:languages/screens/listening_screen.dart';
+import 'package:languages/screens/settings_screen.dart';
+import 'package:languages/screens/vocabulary_screen.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 

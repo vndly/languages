@@ -1,12 +1,12 @@
 import 'dart:math';
-import 'package:Languages/api/get_categories.dart';
-import 'package:Languages/json/json_category.dart';
-import 'package:Languages/json/json_entry.dart';
-import 'package:Languages/json/json_expression.dart';
-import 'package:Languages/json/json_profile.dart';
-import 'package:Languages/storage/categories_storage.dart';
-import 'package:Languages/storage/known_words_storage.dart';
-import 'package:Languages/storage/profile_storage.dart';
+import 'package:languages/api/get_categories.dart';
+import 'package:languages/json/json_category.dart';
+import 'package:languages/json/json_entry.dart';
+import 'package:languages/json/json_expression.dart';
+import 'package:languages/json/json_profile.dart';
+import 'package:languages/storage/categories_storage.dart';
+import 'package:languages/storage/known_words_storage.dart';
+import 'package:languages/storage/profile_storage.dart';
 
 class Vocabulary {
   final List<JsonCategory> categories;

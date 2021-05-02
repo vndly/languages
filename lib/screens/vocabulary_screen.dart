@@ -1,9 +1,9 @@
-import 'package:Languages/json/json_expression.dart';
-import 'package:Languages/storage/known_words_storage.dart';
-import 'package:Languages/models/vocabulary.dart';
-import 'package:Languages/models/player.dart';
-import 'package:Languages/widgets/expression_text.dart';
-import 'package:Languages/widgets/option_button.dart';
+import 'package:languages/json/json_expression.dart';
+import 'package:languages/storage/known_words_storage.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/models/player.dart';
+import 'package:languages/widgets/expression_text.dart';
+import 'package:languages/widgets/option_button.dart';
 import 'package:flutter/material.dart';
 
 // TODO(momo): Don't repeat words in the same session

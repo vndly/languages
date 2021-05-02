@@ -1,5 +1,5 @@
 import 'dart:convert';
-import 'package:Languages/json/json_profile.dart';
+import 'package:languages/json/json_profile.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 
 class ProfileStorage {

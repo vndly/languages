@@ -1,8 +1,8 @@
-import 'package:Languages/json/json_expression.dart';
-import 'package:Languages/models/vocabulary.dart';
-import 'package:Languages/widgets/category_row.dart';
-import 'package:Languages/widgets/empty_message.dart';
-import 'package:Languages/widgets/entry_row.dart';
+import 'package:languages/json/json_expression.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/widgets/category_row.dart';
+import 'package:languages/widgets/empty_message.dart';
+import 'package:languages/widgets/entry_row.dart';
 import 'package:flutter/material.dart';
 
 class CatalogueScreen extends StatefulWidget {

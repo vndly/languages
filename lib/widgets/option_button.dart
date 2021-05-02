@@ -18,12 +18,14 @@ class OptionButton extends StatelessWidget {
     return ButtonTheme(
       height: 100,
       minWidth: 100,
-      child: RaisedButton(
-        color: color,
-        onPressed: onPressed,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(500),
+      child: ElevatedButton(
+        style: ElevatedButton.styleFrom(
+          primary: color,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(500),
+          ),
         ),
+        onPressed: onPressed,
         child: (icon != null)
             ? Icon(
                 icon,

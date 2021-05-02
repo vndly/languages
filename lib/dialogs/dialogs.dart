@@ -43,7 +43,7 @@ class Dialogs {
             contentPadding: const EdgeInsets.all(30),
             content: Text(error),
             actions: [
-              FlatButton(
+              TextButton(
                 onPressed: () => Navigator.of(context).pop(),
                 child: Text('Ok'.toUpperCase()),
               ),

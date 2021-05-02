@@ -1,5 +1,5 @@
-import 'package:Languages/models/player.dart';
-import 'package:Languages/models/vocabulary.dart';
+import 'package:languages/models/player.dart';
+import 'package:languages/models/vocabulary.dart';
 import 'package:flutter/material.dart';
 
 class EntryRow extends StatelessWidget {

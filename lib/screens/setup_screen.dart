@@ -1,10 +1,10 @@
-import 'package:Languages/api/get_categories.dart';
-import 'package:Languages/dialogs/dialogs.dart';
-import 'package:Languages/json/json_profile.dart';
-import 'package:Languages/models/language.dart';
-import 'package:Languages/screens/splash_screen.dart';
-import 'package:Languages/storage/categories_storage.dart';
-import 'package:Languages/storage/profile_storage.dart';
+import 'package:languages/api/get_categories.dart';
+import 'package:languages/dialogs/dialogs.dart';
+import 'package:languages/json/json_profile.dart';
+import 'package:languages/models/language.dart';
+import 'package:languages/screens/splash_screen.dart';
+import 'package:languages/storage/categories_storage.dart';
+import 'package:languages/storage/profile_storage.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:dropdown_search/dropdown_search.dart';
 import 'package:flutter/material.dart';
@@ -106,9 +106,9 @@ class _ContentState extends State<Content> {
             ButtonTheme(
               height: 50,
               minWidth: double.infinity,
-              child: RaisedButton(
+              child: ElevatedButton(
                 onPressed: isFormValid ? _onFinish : null,
-                color: Colors.blue,
+                style: ElevatedButton.styleFrom(primary: Colors.blue),
                 child: Text(
                   'Finish'.toUpperCase(),
                   style: const TextStyle(color: Colors.white),

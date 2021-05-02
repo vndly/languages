@@ -1,6 +1,6 @@
-import 'package:Languages/storage/known_words_storage.dart';
-import 'package:Languages/widgets/empty_message.dart';
-import 'package:Languages/widgets/toolbar.dart';
+import 'package:languages/storage/known_words_storage.dart';
+import 'package:languages/widgets/empty_message.dart';
+import 'package:languages/widgets/toolbar.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
 

@@ -1,4 +1,4 @@
-import 'package:Languages/screens/splash_screen.dart';
+import 'package:languages/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
 
 // Check if word is duplicated

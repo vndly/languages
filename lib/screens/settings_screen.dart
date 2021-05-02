@@ -1,12 +1,12 @@
-import 'package:Languages/api/get_categories.dart';
-import 'package:Languages/dialogs/dialogs.dart';
-import 'package:Languages/json/json_category.dart';
-import 'package:Languages/json/json_expression.dart';
-import 'package:Languages/models/vocabulary.dart';
-import 'package:Languages/screens/expression_list_screen.dart';
-import 'package:Languages/screens/known_words_screen.dart';
-import 'package:Languages/storage/categories_storage.dart';
-import 'package:Languages/storage/known_words_storage.dart';
+import 'package:languages/api/get_categories.dart';
+import 'package:languages/dialogs/dialogs.dart';
+import 'package:languages/json/json_category.dart';
+import 'package:languages/json/json_expression.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/screens/expression_list_screen.dart';
+import 'package:languages/screens/known_words_screen.dart';
+import 'package:languages/storage/categories_storage.dart';
+import 'package:languages/storage/known_words_storage.dart';
 import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {

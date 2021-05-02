@@ -1,4 +1,4 @@
-import 'package:Languages/json/json_entry.dart';
+import 'package:languages/json/json_entry.dart';
 import 'package:json_annotation/json_annotation.dart';
 
 part 'json_category.g.dart';
