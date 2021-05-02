@@ -6,23 +6,23 @@ environment:
   sdk: ">=2.10.0 <3.0.0"
 
 dependencies:
-  dafluta: ^2.6.0
-  dahttp: ^3.2.0
-  flutter_tts: ^1.3.0
-  dropdown_search: ^0.4.8
-  json_annotation: ^3.1.1
-  shared_preferences: ^0.5.12+4
+  dafluta: ^2.7.0
+  dahttp: ^3.3.0
+  flutter_tts: ^3.0.0
+  dropdown_search: ^0.6.1
+  json_annotation: ^4.0.1
+  shared_preferences: ^2.0.5
 
   flutter:
     sdk: flutter
 
 dev_dependencies:
-  daassets: ^1.2.0
-  dapackages: ^1.4.0
-  build_runner: ^1.10.6
-  daincrementer: ^1.1.0
-  json_serializable: ^3.5.0
-  flutter_launcher_icons: ^0.8.1
+  daassets: ^1.3.0
+  dapackages: ^1.6.0
+  build_runner: ^2.0.1
+  daincrementer: ^1.2.0
+  json_serializable: ^4.1.1
+  flutter_launcher_icons: ^0.9.0
 
   flutter_test:
     sdk: flutter
