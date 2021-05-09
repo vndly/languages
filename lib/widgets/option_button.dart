@@ -16,30 +16,30 @@ class OptionButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ButtonTheme(
-      height: 100,
-      minWidth: 100,
       child: ElevatedButton(
-        style: ElevatedButton.styleFrom(
-          primary: color,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(500),
+          style: ElevatedButton.styleFrom(
+            primary: color,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(1000),
+            ),
           ),
-        ),
-        onPressed: onPressed,
-        child: (icon != null)
-            ? Icon(
-                icon,
-                size: 40,
-                color: Colors.white,
-              )
-            : Text(
-                text,
-                style: const TextStyle(
-                  color: Colors.white,
-                  fontSize: 40,
-                ),
-              ),
-      ),
+          onPressed: onPressed,
+          child: Padding(
+            padding: const EdgeInsets.fromLTRB(15, 30, 15, 30),
+            child: (icon != null)
+                ? Icon(
+                    icon,
+                    size: 40,
+                    color: Colors.white,
+                  )
+                : Text(
+                    text,
+                    style: const TextStyle(
+                      color: Colors.white,
+                      fontSize: 40,
+                    ),
+                  ),
+          )),
     );
   }
 }
