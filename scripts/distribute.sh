@@ -10,6 +10,7 @@ ${DIR}/incrementer.sh
 export FIREBASE_TOKEN=${FIREBASE_TOKEN}
 
 flutter clean
+flutter pub upgrade
 flutter pub get
 flutter build apk --release -t lib/main/main.dart
 
