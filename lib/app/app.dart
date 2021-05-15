@@ -1,11 +1,12 @@
 import 'package:languages/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:wakelock/wakelock.dart';
 
-// Check if word is duplicated
-// Add exercise to check if you remember the word. If so, make it less frequent to appear
 class LanguageApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
+    Wakelock.enable();
+
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       theme: ThemeData(

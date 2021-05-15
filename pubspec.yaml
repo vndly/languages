@@ -1,6 +1,6 @@
 name: languages
 description: A Flutter app to learn languages
-version: 1.0.0+17
+version: 1.0.1+18
 
 environment:
   sdk: ">=2.10.0 <3.0.0"
@@ -8,6 +8,7 @@ environment:
 dependencies:
   dafluta: ^2.7.0
   dahttp: ^3.3.0
+  wakelock: ^0.5.2
   flutter_tts: ^3.0.0
   dropdown_search: ^0.6.1
   json_annotation: ^4.0.1
