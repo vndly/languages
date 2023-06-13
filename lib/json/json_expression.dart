@@ -26,5 +26,6 @@ class JsonExpression {
   Map<String, dynamic> toJson() => _$JsonExpressionToJson(this);
 
   static List<JsonExpression> fromJsonList(List<dynamic> json) =>
+      // ignore: unnecessary_lambdas
       json.map((e) => _$JsonExpressionFromJson(e)).toList();
 }

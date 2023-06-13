@@ -2,4 +2,4 @@
 
 set -e
 
-flutter format lib/
+dart format lib

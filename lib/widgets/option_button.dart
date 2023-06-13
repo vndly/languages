@@ -1,16 +1,16 @@
 import 'package:flutter/material.dart';
 
 class OptionButton extends StatelessWidget {
-  final IconData icon;
-  final String text;
+  final IconData? icon;
+  final String? text;
   final Color color;
-  final Function onPressed;
+  final VoidCallback onPressed;
 
   const OptionButton({
-    this.icon,
+    required this.color,
+    required this.onPressed,
     this.text,
-    this.color,
-    this.onPressed,
+    this.icon,
   });
 
   @override
@@ -18,7 +18,7 @@ class OptionButton extends StatelessWidget {
     return ButtonTheme(
       child: ElevatedButton(
           style: ElevatedButton.styleFrom(
-            primary: color,
+            backgroundColor: color,
             shape: RoundedRectangleBorder(
               borderRadius: BorderRadius.circular(1000),
             ),
@@ -33,7 +33,7 @@ class OptionButton extends StatelessWidget {
                     color: Colors.white,
                   )
                 : Text(
-                    text,
+                    text!,
                     style: const TextStyle(
                       color: Colors.white,
                       fontSize: 40,

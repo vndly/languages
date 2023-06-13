@@ -1,10 +1,10 @@
-import 'package:languages/screens/setup_screen.dart';
-import 'package:languages/storage/known_words_storage.dart';
-import 'package:languages/models/vocabulary.dart';
-import 'package:languages/screens/home_screen.dart';
-import 'package:languages/storage/profile_storage.dart';
 import 'package:dafluta/dafluta.dart';
 import 'package:flutter/material.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/screens/home_screen.dart';
+import 'package:languages/screens/setup_screen.dart';
+import 'package:languages/storage/known_words_storage.dart';
+import 'package:languages/storage/profile_storage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen();
@@ -20,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    InitCallback.register(_init);
+    Delayed.post(_init);
   }
 
   Future _init() async {
@@ -30,7 +30,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.of(context).pushReplacement(SetupScreen.instance());
     } else {
       final Vocabulary vocabulary = await Vocabulary.load();
-      Navigator.of(context).pushReplacement(HomeScren.instance(vocabulary));
+      Navigator.of(context).pushReplacement(HomeScreen.instance(vocabulary));
     }
   }
 

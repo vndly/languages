@@ -6,21 +6,21 @@ class CategoriesStorage {
   static const String CATEGORIES = 'categories';
 
   static Future<bool> isEmpty() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    return !prefs.containsKey(CATEGORIES);
+    return !preferences.containsKey(CATEGORIES);
   }
 
   static Future<List<JsonCategory>> load() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    final String data = prefs.getString(CATEGORIES);
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    final String data = preferences.getString(CATEGORIES) ?? '[]';
     final dynamic json = jsonDecode(data);
 
     return JsonCategory.fromJsonList(json);
   }
 
   static Future save(List<JsonCategory> categories) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(CATEGORIES, jsonEncode(categories));
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString(CATEGORIES, jsonEncode(categories));
   }
 }

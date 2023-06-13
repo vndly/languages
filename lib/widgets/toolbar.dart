@@ -3,7 +3,7 @@ import 'package:flutter/material.dart';
 class Toolbar extends StatelessWidget {
   final String title;
 
-  const Toolbar({this.title});
+  const Toolbar({required this.title});
 
   @override
   Widget build(BuildContext context) {
@@ -11,7 +11,7 @@ class Toolbar extends StatelessWidget {
       decoration: BoxDecoration(
         boxShadow: [
           BoxShadow(
-            color: Colors.grey[300],
+            color: Colors.grey[300]!,
             blurRadius: 1,
             offset: const Offset(0, 3),
           )

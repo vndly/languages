@@ -1,24 +1,24 @@
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
 import 'package:languages/models/vocabulary.dart';
 import 'package:languages/screens/catalogue_screen.dart';
 import 'package:languages/screens/listening_screen.dart';
 import 'package:languages/screens/settings_screen.dart';
 import 'package:languages/screens/vocabulary_screen.dart';
-import 'package:dafluta/dafluta.dart';
-import 'package:flutter/material.dart';
 
-class HomeScren extends StatefulWidget {
+class HomeScreen extends StatefulWidget {
   final Vocabulary vocabulary;
 
-  const HomeScren(this.vocabulary);
+  const HomeScreen(this.vocabulary);
 
-  static PageRouteBuilder<HomeScren> instance(Vocabulary vocabulary) =>
-      FadeRoute<HomeScren>(HomeScren(vocabulary));
+  static PageRouteBuilder<HomeScreen> instance(Vocabulary vocabulary) =>
+      FadeRoute<HomeScreen>(HomeScreen(vocabulary));
 
   @override
-  _HomeScrenState createState() => _HomeScrenState();
+  _HomeScreenState createState() => _HomeScreenState();
 }
 
-class _HomeScrenState extends State<HomeScren> {
+class _HomeScreenState extends State<HomeScreen> {
   int _selectedIndex = 0;
 
   void _onPageChanged(int index) {

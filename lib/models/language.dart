@@ -20,7 +20,7 @@ class Language {
 
   String get code => locale.toString().replaceAll('_', '-');
 
-  String get name => supportedLanguages[code];
+  String get name => supportedLanguages[code]!;
 
   static Future<List<Language>> availableLanguages() async {
     final FlutterTts tts = FlutterTts();

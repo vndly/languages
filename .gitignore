@@ -41,3 +41,8 @@ app.*.symbols
 
 # Obfuscation related
 app.*.map.json
+
+# Custom
+!.vscode/
+!scripts/
+android/secrets.gradle

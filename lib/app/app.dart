@@ -1,5 +1,5 @@
-import 'package:languages/screens/splash_screen.dart';
 import 'package:flutter/material.dart';
+import 'package:languages/screens/splash_screen.dart';
 import 'package:wakelock/wakelock.dart';
 
 class LanguageApp extends StatelessWidget {

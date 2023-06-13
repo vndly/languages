@@ -1,6 +1,6 @@
+import 'package:flutter/material.dart';
 import 'package:languages/models/player.dart';
 import 'package:languages/models/vocabulary.dart';
-import 'package:flutter/material.dart';
 
 class EntryRow extends StatelessWidget {
   final Vocabulary vocabulary;
@@ -8,9 +8,9 @@ class EntryRow extends StatelessWidget {
   final String target;
 
   const EntryRow({
-    @required this.vocabulary,
-    @required this.origin,
-    @required this.target,
+    required this.vocabulary,
+    required this.origin,
+    required this.target,
   });
 
   @override

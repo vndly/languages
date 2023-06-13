@@ -7,6 +7,10 @@
     "editor.detectIndentation": false,
     "editor.formatOnSave": true,
     "editor.fontFamily": "'Source Code Pro'",
+    "editor.codeActionsOnSave": {
+        "source.fixAll": true,
+    },
     "files.autoSave": "afterDelay",
+    "files.encoding": "utf8",
     "dart.previewFlutterUiGuides": true
 }

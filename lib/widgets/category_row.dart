@@ -1,7 +1,7 @@
+import 'package:flutter/material.dart';
 import 'package:languages/json/json_category.dart';
 import 'package:languages/models/vocabulary.dart';
 import 'package:languages/screens/category_screen.dart';
-import 'package:flutter/material.dart';
 
 class CategoryRow extends StatelessWidget {
   final Vocabulary vocabulary;

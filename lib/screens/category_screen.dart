@@ -1,10 +1,10 @@
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
 import 'package:languages/json/json_category.dart';
 import 'package:languages/models/vocabulary.dart';
 import 'package:languages/widgets/empty_message.dart';
 import 'package:languages/widgets/entry_row.dart';
 import 'package:languages/widgets/toolbar.dart';
-import 'package:dafluta/dafluta.dart';
-import 'package:flutter/material.dart';
 
 class CategoryScreen extends StatelessWidget {
   final Vocabulary vocabulary;
@@ -16,7 +16,7 @@ class CategoryScreen extends StatelessWidget {
     Vocabulary vocabulary,
     JsonCategory category,
   ) =>
-      RightLeftRoute<CategoryScreen>(CategoryScreen(vocabulary, category));
+      RightLeftSlideRoute<CategoryScreen>(CategoryScreen(vocabulary, category));
 
   @override
   Widget build(BuildContext context) {

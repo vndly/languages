@@ -6,13 +6,11 @@ part of 'json_profile.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-JsonProfile _$JsonProfileFromJson(Map<String, dynamic> json) {
-  return JsonProfile(
-    origin: json['origin'] as String,
-    target: json['target'] as String,
-    url: json['url'] as String,
-  );
-}
+JsonProfile _$JsonProfileFromJson(Map<String, dynamic> json) => JsonProfile(
+      origin: json['origin'] as String? ?? '',
+      target: json['target'] as String? ?? '',
+      url: json['url'] as String? ?? '',
+    );
 
 Map<String, dynamic> _$JsonProfileToJson(JsonProfile instance) =>
     <String, dynamic>{

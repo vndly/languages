@@ -1,5 +1,5 @@
-import 'package:languages/json/json_entry.dart';
 import 'package:json_annotation/json_annotation.dart';
+import 'package:languages/json/json_entry.dart';
 
 part 'json_category.g.dart';
 
@@ -19,5 +19,6 @@ class JsonCategory {
   Map<String, dynamic> toJson() => _$JsonCategoryToJson(this);
 
   static List<JsonCategory> fromJsonList(List<dynamic> json) =>
+      // ignore: unnecessary_lambdas
       json.map((e) => _$JsonCategoryFromJson(e)).toList();
 }

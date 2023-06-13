@@ -1,10 +1,10 @@
+import 'package:flutter/material.dart';
 import 'package:languages/json/json_expression.dart';
-import 'package:languages/storage/known_words_storage.dart';
-import 'package:languages/models/vocabulary.dart';
 import 'package:languages/models/player.dart';
+import 'package:languages/models/vocabulary.dart';
+import 'package:languages/storage/known_words_storage.dart';
 import 'package:languages/widgets/expression_text.dart';
 import 'package:languages/widgets/option_button.dart';
-import 'package:flutter/material.dart';
 
 // TODO(momo): Don't repeat words in the same session
 // TODO(momo): Remove all duplicated
@@ -18,14 +18,14 @@ class VocabularyScreen extends StatefulWidget {
 }
 
 class _VocabularyScreenState extends State<VocabularyScreen> {
-  JsonExpression expression;
+  JsonExpression? expression;
 
   @override
   Widget build(BuildContext context) {
     if (expression == null) {
       return Empty(_nextExpression);
     } else {
-      return Content(widget.vocabulary, expression, _nextExpression);
+      return Content(widget.vocabulary, expression!, _nextExpression);
     }
   }
 
@@ -37,7 +37,7 @@ class _VocabularyScreenState extends State<VocabularyScreen> {
 }
 
 class Empty extends StatelessWidget {
-  final Function nextExpression;
+  final VoidCallback nextExpression;
 
   const Empty(this.nextExpression);
 
@@ -58,7 +58,7 @@ class Empty extends StatelessWidget {
 class Content extends StatefulWidget {
   final Vocabulary vocabulary;
   final JsonExpression expression;
-  final Function nextExpression;
+  final VoidCallback nextExpression;
 
   const Content(this.vocabulary, this.expression, this.nextExpression);
 

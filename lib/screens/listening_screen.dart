@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:languages/json/json_expression.dart';
-import 'package:languages/models/vocabulary.dart';
 import 'package:languages/models/player.dart';
+import 'package:languages/models/vocabulary.dart';
 import 'package:languages/widgets/expression_text.dart';
 import 'package:languages/widgets/option_button.dart';
-import 'package:flutter/material.dart';
 
 class ListeningScreen extends StatefulWidget {
   final Vocabulary vocabulary;
@@ -15,14 +15,14 @@ class ListeningScreen extends StatefulWidget {
 }
 
 class _ListeningScreenState extends State<ListeningScreen> {
-  JsonExpression expression;
+  JsonExpression? expression;
 
   @override
   Widget build(BuildContext context) {
     if (expression == null) {
       return Empty(_start);
     } else {
-      return Content(widget.vocabulary, expression, _start, _stop);
+      return Content(widget.vocabulary, expression!, _start, _stop);
     }
   }
 
@@ -40,7 +40,7 @@ class _ListeningScreenState extends State<ListeningScreen> {
 }
 
 class Empty extends StatelessWidget {
-  final Function start;
+  final VoidCallback start;
 
   const Empty(this.start);
 
@@ -59,8 +59,8 @@ class Empty extends StatelessWidget {
 class Content extends StatefulWidget {
   final Vocabulary vocabulary;
   final JsonExpression expression;
-  final Function start;
-  final Function stop;
+  final VoidCallback start;
+  final VoidCallback stop;
 
   const Content(this.vocabulary, this.expression, this.start, this.stop);
 

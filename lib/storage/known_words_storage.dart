@@ -27,10 +27,10 @@ class KnownWordsStorage {
   }
 
   static Future<List<String>> load() async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
 
-    if (prefs.containsKey(KNOWN_WORDS)) {
-      final String data = prefs.getString(KNOWN_WORDS);
+    if (preferences.containsKey(KNOWN_WORDS)) {
+      final String data = preferences.getString(KNOWN_WORDS) ?? '[]';
       final List<dynamic> json = jsonDecode(data) as List<dynamic>;
       final List<String> list = json.map((w) => w.toString()).toList();
       list.sort((w1, w2) => w1.compareTo(w2));
@@ -42,7 +42,7 @@ class KnownWordsStorage {
   }
 
   static Future _save(List<String> words) async {
-    final SharedPreferences prefs = await SharedPreferences.getInstance();
-    await prefs.setString(KNOWN_WORDS, jsonEncode(words));
+    final SharedPreferences preferences = await SharedPreferences.getInstance();
+    await preferences.setString(KNOWN_WORDS, jsonEncode(words));
   }
 }

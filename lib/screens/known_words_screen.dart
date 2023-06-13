@@ -1,8 +1,8 @@
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
 import 'package:languages/storage/known_words_storage.dart';
 import 'package:languages/widgets/empty_message.dart';
 import 'package:languages/widgets/toolbar.dart';
-import 'package:dafluta/dafluta.dart';
-import 'package:flutter/material.dart';
 
 class KnownWordsScreen extends StatefulWidget {
   final List<String> words;
@@ -10,7 +10,7 @@ class KnownWordsScreen extends StatefulWidget {
   const KnownWordsScreen(this.words);
 
   static PageRouteBuilder<KnownWordsScreen> instance(List<String> words) =>
-      RightLeftRoute<KnownWordsScreen>(KnownWordsScreen(words));
+      RightLeftSlideRoute<KnownWordsScreen>(KnownWordsScreen(words));
 
   @override
   _KnownWordsScreenState createState() => _KnownWordsScreenState();

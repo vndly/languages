@@ -1,5 +1,5 @@
-import 'package:languages/models/player.dart';
 import 'package:flutter/material.dart';
+import 'package:languages/models/player.dart';
 
 class ExpressionText extends StatelessWidget {
   final String language;

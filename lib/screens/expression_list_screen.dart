@@ -1,8 +1,8 @@
+import 'package:dafluta/dafluta.dart';
+import 'package:flutter/material.dart';
 import 'package:languages/json/json_expression.dart';
 import 'package:languages/widgets/empty_message.dart';
 import 'package:languages/widgets/toolbar.dart';
-import 'package:dafluta/dafluta.dart';
-import 'package:flutter/material.dart';
 
 class ExpressionListScreen extends StatelessWidget {
   final String title;
@@ -14,7 +14,7 @@ class ExpressionListScreen extends StatelessWidget {
     String title,
     List<JsonExpression> expressions,
   ) =>
-      RightLeftRoute<ExpressionListScreen>(
+      RightLeftSlideRoute<ExpressionListScreen>(
           ExpressionListScreen(title, expressions));
 
   @override

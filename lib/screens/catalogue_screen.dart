@@ -1,9 +1,9 @@
+import 'package:flutter/material.dart';
 import 'package:languages/json/json_expression.dart';
 import 'package:languages/models/vocabulary.dart';
 import 'package:languages/widgets/category_row.dart';
 import 'package:languages/widgets/empty_message.dart';
 import 'package:languages/widgets/entry_row.dart';
-import 'package:flutter/material.dart';
 
 class CatalogueScreen extends StatefulWidget {
   final Vocabulary vocabulary;
@@ -15,7 +15,7 @@ class CatalogueScreen extends StatefulWidget {
 }
 
 class _CatalogueScreenState extends State<CatalogueScreen> {
-  List<JsonExpression> result;
+  List<JsonExpression>? result;
   final controller = TextEditingController();
 
   @override
@@ -78,10 +78,10 @@ class _CatalogueScreenState extends State<CatalogueScreen> {
               child: ListView.builder(
                 itemBuilder: (context, position) => EntryRow(
                   vocabulary: widget.vocabulary,
-                  origin: result[position].origin,
-                  target: result[position].target,
+                  origin: result![position].origin,
+                  target: result![position].target,
                 ),
-                itemCount: result.length,
+                itemCount: result!.length,
               ),
             )
         ],

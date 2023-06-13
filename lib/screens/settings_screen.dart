@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:languages/api/get_categories.dart';
 import 'package:languages/dialogs/dialogs.dart';
 import 'package:languages/json/json_category.dart';
@@ -7,7 +8,6 @@ import 'package:languages/screens/expression_list_screen.dart';
 import 'package:languages/screens/known_words_screen.dart';
 import 'package:languages/storage/categories_storage.dart';
 import 'package:languages/storage/known_words_storage.dart';
-import 'package:flutter/material.dart';
 
 class SettingsScreen extends StatefulWidget {
   final Vocabulary vocabulary;
@@ -112,8 +112,8 @@ class _ButtonKnownWordsState extends State<ButtonKnownWords> {
         builder: (context, snapshot) {
           if (snapshot.hasData) {
             return SettingsRow(
-              title: '${snapshot.data.length} known words',
-              onTap: () => _onSelected(context, snapshot.data),
+              title: '${snapshot.data!.length} known words',
+              onTap: () => _onSelected(context, snapshot.data!),
             );
           } else {
             return const SettingsRow(
@@ -134,7 +134,7 @@ class _ButtonKnownWordsState extends State<ButtonKnownWords> {
 
 class ButtonSynchronize extends StatelessWidget {
   final Vocabulary vocabulary;
-  final Function reload;
+  final VoidCallback reload;
 
   const ButtonSynchronize(this.vocabulary, this.reload);
 
@@ -168,11 +168,11 @@ class ButtonSynchronize extends StatelessWidget {
 
 class SettingsRow extends StatelessWidget {
   final String title;
-  final Function onTap;
+  final VoidCallback? onTap;
   final bool showArrow;
 
   const SettingsRow({
-    this.title,
+    required this.title,
     this.onTap,
     this.showArrow = true,
   });

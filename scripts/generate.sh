@@ -2,5 +2,6 @@
 
 set -e
 
+flutter pub upgrade
 flutter pub run build_runner build --delete-conflicting-outputs
-flutter format lib
+dart format lib

@@ -1,9 +1,9 @@
 import 'dart:convert';
+import 'package:dahttp/dahttp.dart';
+import 'package:http/http.dart';
 import 'package:languages/json/json_category.dart';
 import 'package:languages/json/json_profile.dart';
 import 'package:languages/storage/profile_storage.dart';
-import 'package:dahttp/dahttp.dart';
-import 'package:http/http.dart';
 
 class GetCategories extends ValuedHttpClient<List<JsonCategory>> {
   GetCategories() : super(logger: DefaultHttpLogger(headers: true, body: true));

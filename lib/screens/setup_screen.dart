@@ -1,3 +1,6 @@
+import 'package:dafluta/dafluta.dart';
+import 'package:dropdown_search/dropdown_search.dart';
+import 'package:flutter/material.dart';
 import 'package:languages/api/get_categories.dart';
 import 'package:languages/dialogs/dialogs.dart';
 import 'package:languages/json/json_profile.dart';
@@ -5,9 +8,6 @@ import 'package:languages/models/language.dart';
 import 'package:languages/screens/splash_screen.dart';
 import 'package:languages/storage/categories_storage.dart';
 import 'package:languages/storage/profile_storage.dart';
-import 'package:dafluta/dafluta.dart';
-import 'package:dropdown_search/dropdown_search.dart';
-import 'package:flutter/material.dart';
 
 class SetupScreen extends StatelessWidget {
   const SetupScreen();
@@ -37,14 +37,14 @@ class Content extends StatefulWidget {
 class _ContentState extends State<Content> {
   final List<Language> languages = [];
   final TextEditingController controller = TextEditingController();
-  Language origin;
-  Language target;
-  String url;
+  Language? origin;
+  Language? target;
+  String? url;
 
   @override
   void initState() {
     super.initState();
-    InitCallback.register(_init);
+    Delayed.post(_init);
   }
 
   Future _init() async {
@@ -70,21 +70,21 @@ class _ContentState extends State<Content> {
             ),
             const VBox(40),
             DropdownSearch<Language>(
-              mode: Mode.MENU,
+              //mode: Mode.MENU,
               selectedItem: origin,
               items: languages,
-              label: 'From',
-              hint: 'Select language',
+              //label: 'From',
+              //hint: 'Select language',
               itemAsString: (l) => l.name,
               onChanged: _onFrom,
             ),
             const VBox(20),
             DropdownSearch<Language>(
-              mode: Mode.MENU,
+              //mode: Mode.MENU,
               selectedItem: target,
               items: languages,
-              label: 'To',
-              hint: 'Select language',
+              //label: 'To',
+              //hint: 'Select language',
               itemAsString: (l) => l.name,
               onChanged: _onTo,
             ),
@@ -108,7 +108,7 @@ class _ContentState extends State<Content> {
               minWidth: double.infinity,
               child: ElevatedButton(
                 onPressed: isFormValid ? _onFinish : null,
-                style: ElevatedButton.styleFrom(primary: Colors.blue),
+                style: ElevatedButton.styleFrom(backgroundColor: Colors.blue),
                 child: Text(
                   'Finish'.toUpperCase(),
                   style: const TextStyle(color: Colors.white),
@@ -122,23 +122,26 @@ class _ContentState extends State<Content> {
   }
 
   bool get isFormValid =>
-      (origin != null) && (target != null) && (url != null) && (url.isNotEmpty);
+      (origin != null) &&
+      (target != null) &&
+      (url != null) &&
+      (url!.isNotEmpty);
 
-  void _onFrom(Language language) {
+  void _onFrom(Language? language) {
     setState(() {
       origin = language;
 
-      if (target?.code == origin.code) {
+      if (target?.code == origin?.code) {
         target = null;
       }
     });
   }
 
-  void _onTo(Language language) {
+  void _onTo(Language? language) {
     setState(() {
       target = language;
 
-      if (origin?.code == target.code) {
+      if (origin?.code == target?.code) {
         origin = null;
       }
     });
@@ -149,9 +152,9 @@ class _ContentState extends State<Content> {
         await Dialogs.showLoadingDialog(context, 'Downloading data...');
 
     final JsonProfile profile = JsonProfile(
-      origin: origin.code,
-      target: target.code,
-      url: url,
+      origin: origin!.code,
+      target: target!.code,
+      url: url!,
     );
     await ProfileStorage.save(profile);
 

@@ -1,3 +1,4 @@
+import 'package:flutter/material.dart';
 import 'package:flutter_tts/flutter_tts.dart';
 
 class Player {
@@ -9,7 +10,7 @@ class Player {
     String text1,
     String language2,
     String text2,
-    Function onComplete,
+    VoidCallback onComplete,
   ) async {
     tts.setCompletionHandler(() async {
       switch (state) {

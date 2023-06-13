@@ -6,15 +6,13 @@ part of 'json_category.dart';
 // JsonSerializableGenerator
 // **************************************************************************
 
-JsonCategory _$JsonCategoryFromJson(Map<String, dynamic> json) {
-  return JsonCategory(
-    name: json['name'] as String,
-    values: (json['values'] as List)
-        ?.map((e) =>
-            e == null ? null : JsonEntry.fromJson(e as Map<String, dynamic>))
-        ?.toList(),
-  );
-}
+JsonCategory _$JsonCategoryFromJson(Map<String, dynamic> json) => JsonCategory(
+      name: json['name'] as String? ?? '',
+      values: (json['values'] as List<dynamic>?)
+              ?.map((e) => JsonEntry.fromJson(e as Map<String, dynamic>))
+              .toList() ??
+          const [],
+    );
 
 Map<String, dynamic> _$JsonCategoryToJson(JsonCategory instance) =>
     <String, dynamic>{
